@@ -12,7 +12,25 @@
         "AI drug discovery investment and licensing deals hit $46 billion in H1 2026 — after $43B in 2025 and just $12B in 2024",
         "Money is following results: the data suggests AI-designed pipelines have measurable, trial-level signal — not just hype"
       ],
-      "why": "AI-native pharma pipelines are scaling fast — clinical teams will increasingly see AI-designed drugs in trials and eventually in practice."
+      "why": "AI-native pharma pipelines are scaling fast — clinical teams will increasingly see AI-designed drugs in trials and eventually in practice.",
+      "evidence": {
+        "level": 2,
+        "label": "Consultancy analysis",
+        "detail": "46 programs, not peer-reviewed"
+      },
+      "setting": "Drug development · Phase II trials",
+      "horizon": "5+ years to approved drugs",
+      "terms": [
+        {
+          "term": "AI-designed drug",
+          "def": "An ordinary medicine (pill or biologic) where machine-learning models helped choose the target or design the molecule. It passes the same trials and approval as any drug: 'AI' describes how it was found, not how it works."
+        },
+        {
+          "term": "Phase II trial",
+          "def": "The first trial testing whether a drug actually works in patients with the condition (typically ~100–300), after Phase I safety testing. Historically the stage where most candidates fail."
+        }
+      ],
+      "question": "Would knowing a drug was AI-designed change how you read its trial data?"
     },
     {
       "title": "Anthropic's $2 trillion Nasdaq debut — the largest IPO on record",
@@ -25,7 +43,24 @@
         "Shares opened 34% above the $83 IPO price, with reported proceeds of $81.3 billion",
         "Reuters reports Anthropic holds a revenue edge over OpenAI with smaller losses — and both labs are acquiring biotech startups (OpenAI bought Orchestra Bio in October per Axios)"
       ],
-      "why": "The lab behind Claude — the model family much clinical AI tooling builds on — is now massively capitalized and openly expanding into medicine and biology."
+      "why": "The lab behind Claude — the model family much clinical AI tooling builds on — is now massively capitalized and openly expanding into medicine and biology.",
+      "evidence": {
+        "level": 1,
+        "label": "Market news"
+      },
+      "setting": "Indirect · the companies behind clinical AI tools",
+      "horizon": "No direct patient impact",
+      "terms": [
+        {
+          "term": "IPO",
+          "def": "Initial public offering: a private company sells shares on a stock exchange for the first time. It raises cash and requires public, audited reporting, so outsiders learn far more about how the company works and earns money."
+        },
+        {
+          "term": "Foundation model",
+          "def": "A large general-purpose AI model (Claude, GPT, Gemini) trained on vast amounts of text. Most clinical AI products, such as scribes, chatbots and coding tools, are built on top of one rather than from scratch."
+        }
+      ],
+      "question": "Does it matter to you which company's model sits underneath a clinical tool you use?"
     },
     {
       "title": "GPT-6.2 Astra ships to harsh reviews — but tops the med-chemistry benchmark",
@@ -38,7 +73,79 @@
         "Yet on MedChemBench (a 99-item medicinal-chemistry task set) Astra earned 84.5% — a leading score, though the benchmark itself cautions it does not prove real drug-discovery capability",
         "Google answered Nov 18 with Gemini 4 Neon at $3/$15 per million tokens and a one-million-token context window — the price war continues"
       ],
-      "why": "Frontier labs now ship medical-science benchmarks alongside each release — a clear signal of where they think the value is heading."
+      "why": "Frontier labs now ship medical-science benchmarks alongside each release — a clear signal of where they think the value is heading.",
+      "evidence": {
+        "level": 2,
+        "label": "Vendor benchmark",
+        "detail": "99 test items"
+      },
+      "setting": "Research · drug discovery",
+      "horizon": "Not clinical yet",
+      "terms": [
+        {
+          "term": "Benchmark",
+          "def": "A fixed test set used to score AI models, like a board exam. A high score shows the model answers those questions well, not that it performs safely in real practice."
+        },
+        {
+          "term": "Tokens & context window",
+          "def": "A token is ~¾ of a word; models are priced per million tokens. The context window is how much the model can read at once: 1M tokens ≈ 750,000 words, enough for many complete patient records."
+        }
+      ],
+      "question": "What would convince you an AI model is clinically competent: a benchmark score, or something else?"
+    }
+  ],
+  "briefs": [
+    {
+      "title": "FDA clears DeepHealth AI that predicts 5-year breast cancer risk from routine 3D mammograms",
+      "category": "Regulation",
+      "url": "https://casrai.org/news/fda-clears-deephealth-ai-five-year-breast-cancer-risk-3d-mammogram-2026",
+      "source": "CASRAI",
+      "date": "2026-11-24",
+      "note": "510(k) clearance; described as the first AI cleared for a 3–5 year risk window: a shift from detecting cancer to forecasting it."
+    },
+    {
+      "title": "FDA clears a2z-Omni-Triage: abdomen-pelvis CT triage flagging nine findings",
+      "category": "Regulation",
+      "url": "https://www.itnonline.com/content/a2z-radiology-receives-fda-approval-a2z-omni-triage",
+      "source": "ITN",
+      "date": "2026-11-19",
+      "note": "A triage tool reorders the reading worklist so suspected urgent findings are read first. It doesn't make the diagnosis."
+    },
+    {
+      "title": "Chat 4 Heart trial: patients want health chatbots tailored to their own lives",
+      "category": "Research",
+      "url": "https://rethinkingclinicaltrials.org/news/november-23-2026-patients-say-user-friendliness-and-tailored-content-key-for-ai-chatbots-in-chat-4-heart-health-study/",
+      "source": "NIH Collaboratory",
+      "date": "2026-11-23",
+      "note": "Qualitative study within an NIH trial: ease of use and messages fitted to personal and cultural context mattered most."
+    }
+  ],
+  "signals": [
+    {
+      "title": "LLMs are now auditing the medical literature itself",
+      "note": "An MIT / Dana-Farber team used language models to review nearly 4,000 clinical prediction papers (Nature Medicine) and found that sharing code is still uncommon.",
+      "later": "AI-assisted peer review and reproducibility checks could change which studies we trust, and feeds into a new reporting guideline (TRIPOD-Code).",
+      "url": "https://news.mit.edu/2026/ai-helps-researchers-investigate-how-medical-studies-share-code-1119",
+      "source": "MIT News",
+      "date": "2026-11-19"
+    },
+    {
+      "title": "Physicians report AI shaping their conversations with patients",
+      "note": "A Spherix survey of 396 U.S. physicians describes AI's growing influence on clinical decisions and on what patients bring into the consultation.",
+      "later": "Patients arriving with an AI 'second opinion' may become routine, and consultations will need a way to handle it.",
+      "url": "https://www.globenewswire.com/news-release/2026/11/23/3408655/0/en/spherix-global-insights-research-reveals-growing-influence-of-ai-on-clinical-decisions-and-patient-physician-conversations.html",
+      "source": "Spherix via GlobeNewswire",
+      "date": "2026-11-23"
+    }
+  ],
+  "glossary": [
+    {
+      "term": "510(k) clearance",
+      "def": "The most common FDA route for devices: the maker shows the product is 'substantially equivalent' to one already on the market. Usually requires less clinical evidence than full approval (PMA)."
+    },
+    {
+      "term": "Triage AI",
+      "def": "Software that flags and reprioritises cases (e.g. a suspected bleed on CT) so a clinician sees them sooner. The clinician still reads the case and makes the diagnosis."
     }
   ]
 }
