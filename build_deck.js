@@ -16,21 +16,21 @@ const PALETTES = {
     mode: "light",
     light: {
       bg: "#fbfbfd", "bg-2": "#ffffff", line: "#e3e8f0", "line-2": "#c9d3e3",
-      text: "#091d42", "text-2": "#2b3d5e", muted: "#7d8aa3",
-      accent: "#173c78", "accent-ink": "#2a6aa3", "on-accent": "#ffffff", glow: "transparent",
-      shadow: "0 1px 2px rgba(9,29,66,.05), 0 14px 36px -18px rgba(9,29,66,.18)",
-      "c-regulation": "#173c78", "c-product": "#2b8cbf", "c-research": "#5b4fa8", "c-frontier": "#1f7a8c", "c-policy": "#7d8aa3",
+      text: "#0a2463", "text-2": "#2c4373", muted: "#7a88a8",
+      accent: "#1b46a8", "accent-ink": "#2160c4", "on-accent": "#ffffff", glow: "transparent",
+      shadow: "0 1px 2px rgba(10,36,99,.05), 0 14px 36px -18px rgba(10,36,99,.2)",
+      "c-regulation": "#1b46a8", "c-product": "#2b8cbf", "c-research": "#5b4fa8", "c-frontier": "#1f7a8c", "c-policy": "#7d8aa3",
     },
     dark: {
-      bg: "#04080f", "bg-2": "#060e22", line: "#0d1f45", "line-2": "#173c78",
+      bg: "#061232", "bg-2": "#0a1c48", line: "#13296a", "line-2": "#1f3d8f",
       text: "#eaf5fb", "text-2": "#a8bcde", muted: "#8899aa",
       accent: "#96cfea", "accent-ink": "#b8dff0", "on-accent": "#04080f", glow: "rgba(23,60,120,.35)",
       shadow: "none",
       "c-regulation": "#96cfea", "c-product": "#b8d9f0", "c-research": "#c4b5fd", "c-frontier": "#7fd6d0", "c-policy": "#8899aa",
     },
     hero: {
-      bg: "radial-gradient(120% 95% at 88% -5%, #173c78 0%, #091d42 40%, #04080f 100%)",
-      text: "#eaf5fb", "text-2": "#d0dcf0", muted: "#8899aa", "accent-ink": "#96cfea",
+      bg: "radial-gradient(120% 95% at 88% -5%, #2457c9 0%, #10318a 42%, #081c57 100%)",
+      text: "#f2f8fd", "text-2": "#d6e2f5", muted: "#9fb1d3", "accent-ink": "#a8d8f0",
       line: "rgba(184,217,240,.14)", "line-2": "rgba(184,217,240,.24)", "bg-2": "rgba(184,217,240,.06)",
       "c-regulation": "#96cfea", "c-product": "#b8d9f0", "c-research": "#c4b5fd", "c-frontier": "#7fd6d0", "c-policy": "#a8bcde",
     },
@@ -86,7 +86,7 @@ const vars = (o) => Object.entries(o).map(([k, v]) => `--${k}: ${v};`).join(" ")
 
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..600&display=swap" rel="stylesheet">`;
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap" rel="stylesheet">`;
 
 const [, , storiesPath, outPath] = process.argv;
 if (!storiesPath || !outPath) {
@@ -391,7 +391,7 @@ ${FONTS}
 <style>
   :root {
     --sans: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
-    --display: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --display: "Newsreader", "Iowan Old Style", Georgia, serif;
     --mono: var(--sans);
     --px: clamp(28px, 6.5vw, 120px);
   }
@@ -442,9 +442,9 @@ ${FONTS}
   .bar.bottom { top: auto; bottom: 4.5vh; }
   .brand { display: flex; align-items: center; gap: .7em; color: var(--text-2); }
   .mark { width: .55em; height: .55em; border-radius: 50%; background: var(--accent); }
-  .wm { font-family: var(--display); font-size: 1.25em; text-transform: none; letter-spacing: -.01em;
+  .wm { font-family: var(--display); font-size: 1.55em; text-transform: none; letter-spacing: -.01em;
     color: var(--text); font-weight: 500; }
-  .wm i { font-style: normal; font-weight: 300; color: var(--muted); }
+  .wm i { font-weight: 400; color: var(--text-2); }
   .issue, .count { font-variant-numeric: tabular-nums; }
   .count b { color: var(--text); font-weight: 400; }
   .byline { text-transform: none; letter-spacing: .02em; opacity: .7; }
@@ -471,10 +471,10 @@ ${FONTS}
     text-transform: uppercase; color: var(--accent-ink); margin-bottom: 3vh;
   }
   .title h1 {
-    font-family: var(--display); font-weight: 200;
-    font-size: clamp(48px, 7vw, 128px); line-height: 1.04; letter-spacing: -.04em;
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(48px, 7vw, 128px); line-height: 1; letter-spacing: -.025em;
   }
-  .title h1 em { font-style: normal; color: var(--accent-ink); }
+  .title h1 em { font-style: italic; color: var(--accent-ink); }
   .range { margin-top: 3vh; color: var(--muted); font-weight: 300; font-size: clamp(15px, 1.35vw, 22px); }
   .agenda { list-style: none; margin-top: 6vh; max-width: 1100px; border-top: 1px solid var(--line); }
   .agenda li {
@@ -493,8 +493,8 @@ ${FONTS}
   .meta { display: flex; flex-direction: column; align-items: flex-start; gap: 1.8vh; padding-top: .6vh; }
   .meta-row { display: flex; align-items: center; gap: 1.2vw; flex-wrap: wrap; }
   .num {
-    font-family: var(--display); font-weight: 100; line-height: .8;
-    font-size: clamp(44px, 4.6vw, 88px); letter-spacing: -.04em;
+    font-family: var(--display); font-style: italic; font-weight: 300; line-height: .8;
+    font-size: clamp(44px, 4.6vw, 88px); letter-spacing: -.02em;
     color: var(--accent-ink);
   }
   .src { border-left: 1px solid var(--line-2); padding-left: 1em; font-size: clamp(12px, .95vw, 15px); }
@@ -502,8 +502,8 @@ ${FONTS}
   .src-name { color: var(--text-2); font-weight: 400; }
   .src-date { color: var(--muted); margin-top: .3em; font-variant-numeric: tabular-nums; }
   .story h2 {
-    font-family: var(--display); font-weight: 300;
-    font-size: clamp(28px, 3vw, 54px); line-height: 1.1; letter-spacing: -.03em;
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(28px, 3.1vw, 56px); line-height: 1.06; letter-spacing: -.015em;
     max-width: 28ch; margin-bottom: 2.6vh; text-wrap: balance;
   }
   .bullets { list-style: none; max-width: 100%; counter-reset: b; }
@@ -526,7 +526,7 @@ ${FONTS}
     font-family: var(--mono); font-size: clamp(10px, .78vw, 13px); font-weight: 400; letter-spacing: .16em;
     text-transform: uppercase; color: var(--accent-ink); margin-bottom: 1vh;
   }
-  .why p { font-family: var(--display); font-weight: 300; letter-spacing: -.015em; font-size: clamp(19px, 1.6vw, 28px); line-height: 1.4; letter-spacing: -.01em; line-height: 1.5; color: var(--text); }
+  .why p { font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(19px, 1.6vw, 28px); line-height: 1.4; letter-spacing: -.01em; line-height: 1.5; color: var(--text); }
   .read {
     display: inline-flex; gap: .5em; align-items: center;
     font-size: clamp(12px, .9vw, 14px); font-weight: 350; text-decoration: none;
@@ -575,10 +575,10 @@ ${FONTS}
 
   /* ---------- section slides ---------- */
   .section-h {
-    font-family: var(--display); font-weight: 200; font-size: clamp(36px, 4.2vw, 76px);
-    line-height: 1.05; letter-spacing: -.04em; margin-bottom: 5vh;
+    font-family: var(--display); font-weight: 300; font-size: clamp(36px, 4.2vw, 76px);
+    line-height: 1.02; letter-spacing: -.02em; margin-bottom: 5vh;
   }
-  .section-h em { font-style: normal; color: var(--accent-ink); }
+  .section-h em { font-style: italic; color: var(--accent-ink); }
   .brief-list { list-style: none; border-top: 1px solid var(--line); max-width: 1300px; }
   .brief-list li {
     display: grid; grid-template-columns: 9.5em 1fr auto; gap: 2vw; align-items: baseline;
@@ -787,7 +787,7 @@ console.log(`Wrote ${outPath} (${stories.length} stories, week ${weekNo} of ${ye
 ${FONTS}
 <style>
   :root { ${vars(palette[palette.mode])}
-    --display:"Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; --sans:"Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; }
+    --display:"Newsreader", "Iowan Old Style", Georgia, serif; --sans:"Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; }
   .hero { margin: -6vh calc(-1 * clamp(24px, 8vw, 140px)) 0; padding: 6vh clamp(24px, 8vw, 140px) 9vh;
     background: ${palette.hero.bg}; ${vars(Object.fromEntries(Object.entries(palette.hero).filter(([k]) => k !== "bg")))} color: var(--text); }
   .hero .mark { background: var(--accent-ink); }
@@ -798,11 +798,11 @@ ${FONTS}
     letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
   .brand { display:flex; align-items:center; gap:.7em; }
   .mark { width:9px; height:9px; border-radius:50%; background:var(--accent); }
-  .wm { font-family:var(--display); font-size:16px; font-weight:500; letter-spacing:-.01em; text-transform:none; color:var(--text); }
-  .wm i { font-style:normal; font-weight:300; color:var(--muted); }
+  .wm { font-family:var(--display); font-size:20px; font-weight:500; letter-spacing:-.01em; text-transform:none; color:var(--text); }
+  .wm i { font-weight:400; color:var(--text-2); }
   .eyebrow { margin-top:12vh; font-size:12px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-ink); }
-  h1 { font-family:var(--display); font-weight:200; font-size:clamp(48px, 6.6vw, 112px); letter-spacing:-.04em; line-height:1.04; margin:2.4vh 0 2.4vh; }
-  h1 em { font-style:normal; color:var(--accent-ink); }
+  h1 { font-family:var(--display); font-weight:300; font-size:clamp(48px, 6.6vw, 112px); letter-spacing:-.025em; line-height:1; margin:2.4vh 0 2.4vh; }
+  h1 em { font-style:italic; color:var(--accent-ink); }
   .lede { color:var(--text-2); font-weight:300; font-size:clamp(17px, 1.35vw, 22px); max-width:52ch; line-height:1.45; }
   .list { margin-top:6vh; border-top:1px solid var(--line-2); }
   .row { display:grid; grid-template-columns:7em 12em 1fr auto; gap:2vw; align-items:baseline; padding:2.4vh 0;
@@ -812,7 +812,7 @@ ${FONTS}
   .wk, .dt, .go { font-size:12px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
   .wk { color:var(--text); }
   .latest .wk, .latest .go { color:var(--accent); }
-  .hd { display:flex; flex-direction:column; gap:.35em; font-family:var(--display); font-weight:300; font-size:clamp(16px, 1.2vw, 20px); color:var(--text); }
+  .hd { display:flex; flex-direction:column; gap:.35em; font-family:var(--display); font-size:clamp(17px, 1.3vw, 21px); color:var(--text); }
   footer { margin-top:10vh; font-size:12px; color:var(--muted); }
   @media (max-width:760px) { .row { grid-template-columns:1fr; gap:.6em; } }
 </style></head><body>
