@@ -703,6 +703,75 @@ const html = `<!DOCTYPE html>
 fs.mkdirSync(path.dirname(outPath), { recursive: true });
 fs.writeFileSync(outPath, html);
 console.log(`Wrote ${outPath} (${stories.length} stories, week ${weekNo} of ${year})`);
+// ---- archive index (repo root index.html, used by GitHub Pages) -----------
+{
+  const deckDir = path.dirname(path.resolve(outPath));
+  const rel = path.relative(__dirname, deckDir) || ".";
+  const files = fs
+    .readdirSync(deckDir)
+    .filter((f) => /^\d{4}-\d{2}-\d{2}\.html$/.test(f))
+    .sort()
+    .reverse();
+  const rows = files
+    .map((f, i) => {
+      const iso = f.slice(0, 10);
+      const d0 = parseDate(iso), d1 = new Date(d0.getTime() + 6 * 86400000);
+      const html0 = fs.readFileSync(path.join(deckDir, f), "utf8");
+      const heads = [...html0.matchAll(/<li>\s*<span class="idx">\d+<\/span>\s*<span class="t">([^<]*)<\/span>/g)]
+        .map((m) => m[1]).slice(0, 3);
+      return `
+      <a class="row${i === 0 ? " latest" : ""}" href="${rel}/${f}">
+        <span class="wk">Week ${String(isoWeek(d0)).padStart(2, "0")}</span>
+        <span class="dt">${fmtShort(d0)} – ${fmtShort(d1)}, ${d1.getUTCFullYear()}</span>
+        <span class="hd">${heads.map((h) => `<span>${h}</span>`).join("")}</span>
+        <span class="go">${i === 0 ? "Latest ↗" : "↗"}</span>
+      </a>`;
+    })
+    .join("");
+  const index = `<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Clinical AI Weekly · Archive</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+  @font-face { font-family: Booton; font-weight: 100 900; src: url(data:font/woff2;base64,${FONT_B64}) format("woff2"); }
+  :root { --bg:#08090a; --line:#292b2e; --text:#fafafa; --text-2:#c1c1c1; --muted:#868686; --accent:#b8f818;
+    --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { background:var(--bg); color:var(--text); font-family:Booton, "Helvetica Neue", Arial, sans-serif; font-weight:300;
+    -webkit-font-smoothing:antialiased; padding:6vh clamp(24px, 8vw, 140px); min-height:100vh;
+    background-image: radial-gradient(55vw 55vh at 90% -10%, rgba(184,248,24,.07), transparent 70%); }
+  header { display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); font-size:12px;
+    letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
+  .brand { display:flex; align-items:center; gap:1em; color:var(--text-2); }
+  .logo { height:22px; width:auto; color:var(--text); }
+  .sep { width:1px; height:16px; background:var(--line); }
+  .eyebrow { margin-top:14vh; font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
+  h1 { font-weight:250; font-size:clamp(44px, 6vw, 104px); letter-spacing:-.045em; line-height:1.02; margin:2.4vh 0 2vh; }
+  h1 em { font-style:normal; color:var(--accent); }
+  .lede { color:var(--muted); font-size:clamp(15px, 1.2vw, 19px); max-width:60ch; line-height:1.55; }
+  .list { margin-top:8vh; border-top:1px solid var(--line); }
+  .row { display:grid; grid-template-columns:7em 12em 1fr auto; gap:2vw; align-items:baseline; padding:2.2vh 0;
+    border-bottom:1px solid var(--line); text-decoration:none; color:var(--text-2); transition:background .2s, color .2s; }
+  .row:hover { color:var(--text); background:linear-gradient(90deg, rgba(184,248,24,.05), transparent 60%); }
+  .wk, .dt, .go { font-family:var(--mono); font-size:12px; letter-spacing:.06em; color:var(--muted); }
+  .wk { color:var(--text-2); }
+  .latest .wk, .latest .go { color:var(--accent); }
+  .hd { display:flex; flex-direction:column; gap:.4em; font-size:clamp(14px, 1.05vw, 17px); color:var(--text); }
+  footer { margin-top:10vh; font-family:var(--mono); font-size:12px; color:var(--muted); opacity:.7; }
+  @media (max-width:760px) { .row { grid-template-columns:1fr; gap:.6em; } }
+</style></head><body>
+<header><div class="brand">${LOGO}<span class="sep"></span>Clinical AI Weekly</div><div>Archive</div></header>
+<div class="eyebrow">Weekly team update</div>
+<h1>This week in<br><em>clinical</em> AI</h1>
+<p class="lede">A short weekly briefing on clinical and healthcare AI news, written for clinicians: what happened, how strong the evidence is, and what it means at the bedside.</p>
+<nav class="list">${rows}
+</nav>
+<footer>by ${esc(AUTHOR)}</footer>
+</body></html>
+`;
+  fs.writeFileSync(path.join(__dirname, "index.html"), index);
+}
+
 if (warnings.length) {
   console.warn(
     `\nJARGON CHECK: ${warnings.length} term(s) without a Decoder entry. For each, either add it to ` +
