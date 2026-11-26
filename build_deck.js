@@ -16,20 +16,20 @@ const PALETTES = {
     mode: "light",
     light: {
       bg: "#fbfbfd", "bg-2": "#ffffff", line: "#e3e8f0", "line-2": "#c9d3e3",
-      text: "#0a2463", "text-2": "#2c4373", muted: "#7a88a8",
+      text: "#081c4f", "text-2": "#2a3e6b", muted: "#7a88a8",
       accent: "#1b46a8", "accent-ink": "#2160c4", "on-accent": "#ffffff", glow: "transparent",
       shadow: "0 1px 2px rgba(10,36,99,.05), 0 14px 36px -18px rgba(10,36,99,.2)",
       "c-regulation": "#1b46a8", "c-product": "#2b8cbf", "c-research": "#5b4fa8", "c-frontier": "#1f7a8c", "c-policy": "#7d8aa3",
     },
     dark: {
-      bg: "#061232", "bg-2": "#0a1c48", line: "#13296a", "line-2": "#1f3d8f",
+      bg: "#050f33", "bg-2": "#0a1a4a", line: "#122766", "line-2": "#1c3a88",
       text: "#eaf5fb", "text-2": "#a8bcde", muted: "#8899aa",
       accent: "#96cfea", "accent-ink": "#b8dff0", "on-accent": "#04080f", glow: "rgba(23,60,120,.35)",
       shadow: "none",
       "c-regulation": "#96cfea", "c-product": "#b8d9f0", "c-research": "#c4b5fd", "c-frontier": "#7fd6d0", "c-policy": "#8899aa",
     },
     hero: {
-      bg: "radial-gradient(120% 95% at 88% -5%, #2457c9 0%, #10318a 42%, #081c57 100%)",
+      bg: "radial-gradient(120% 95% at 88% -5%, #12307f 0%, #0a1d55 42%, #050f33 100%)",
       text: "#f2f8fd", "text-2": "#d6e2f5", muted: "#9fb1d3", "accent-ink": "#a8d8f0",
       line: "rgba(184,217,240,.14)", "line-2": "rgba(184,217,240,.24)", "bg-2": "rgba(184,217,240,.06)",
       "c-regulation": "#96cfea", "c-product": "#b8d9f0", "c-research": "#c4b5fd", "c-frontier": "#7fd6d0", "c-policy": "#a8bcde",
