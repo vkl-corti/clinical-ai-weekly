@@ -7,6 +7,59 @@ const path = require("path");
 
 const AUTHOR = "V. Klungtvedt";
 const WORDMARK = `<span class="mark"></span><span class="wm">Clinical AI <i>Weekly</i></span>`;
+// ---- palettes (Apple-inspired: quiet greys, one deep accent) ----------------
+// Each palette has a light and a dark mode; `mode` is the default, T toggles the other.
+// `hero` styles the cover and closing slides.
+const PALETTES = {
+  bordeaux: {
+    mode: "light",
+    light: {
+      bg: "#fbfbfd", "bg-2": "#ffffff", line: "#e8e8ed", "line-2": "#d2d2d7",
+      text: "#1d1d1f", "text-2": "#424245", muted: "#86868b",
+      accent: "#6e1f3f", "accent-ink": "#6e1f3f", "on-accent": "#ffffff", glow: "transparent",
+      shadow: "0 1px 2px rgba(0,0,0,.04), 0 14px 36px -18px rgba(0,0,0,.16)",
+      "c-regulation": "#6e1f3f", "c-product": "#0a5bd3", "c-research": "#6b3fa0", "c-frontier": "#1f6f5c", "c-policy": "#6e6e73",
+    },
+    dark: {
+      bg: "#100709", "bg-2": "#1b0f15", line: "#2c1b24", "line-2": "#433039",
+      text: "#f5f5f7", "text-2": "#cbc3c7", muted: "#8e8590",
+      accent: "#c2577f", "accent-ink": "#e7a3bf", "on-accent": "#100709", glow: "rgba(110,31,63,.38)",
+      shadow: "none",
+      "c-regulation": "#e7a3bf", "c-product": "#8ab4ff", "c-research": "#c9a7ef", "c-frontier": "#7fd1bd", "c-policy": "#a1a1a6",
+    },
+    hero: {
+      bg: "radial-gradient(120% 95% at 88% -5%, #5a1636 0%, #2a0c1b 42%, #0f0508 100%)",
+      text: "#f5f5f7", "text-2": "#d6cdd2", muted: "#9a8f96", "accent-ink": "#eaa9c4",
+      line: "rgba(255,255,255,.12)", "line-2": "rgba(255,255,255,.2)", "bg-2": "rgba(255,255,255,.06)",
+      "c-regulation": "#eaa9c4", "c-product": "#8ab4ff", "c-research": "#c9a7ef", "c-frontier": "#7fd1bd", "c-policy": "#b0a8ad",
+    },
+  },
+  blue: {
+    mode: "dark",
+    dark: {
+      bg: "#050a1c", "bg-2": "#0b1431", line: "#162042", "line-2": "#25315c",
+      text: "#f5f5f7", "text-2": "#b6bed2", muted: "#7c86a3",
+      accent: "#4f7dff", "accent-ink": "#93b1ff", "on-accent": "#050a1c", glow: "rgba(47,91,255,.2)",
+      shadow: "none",
+      "c-regulation": "#93b1ff", "c-product": "#7dd3fc", "c-research": "#c4b5fd", "c-frontier": "#5eead4", "c-policy": "#a1a1aa",
+    },
+    light: {
+      bg: "#fbfbfd", "bg-2": "#ffffff", line: "#e8e8ed", "line-2": "#d2d2d7",
+      text: "#1d1d1f", "text-2": "#424245", muted: "#86868b",
+      accent: "#0b2a6f", "accent-ink": "#1d3f99", "on-accent": "#ffffff", glow: "transparent",
+      shadow: "0 1px 2px rgba(0,0,0,.04), 0 14px 36px -18px rgba(0,0,0,.16)",
+      "c-regulation": "#1d3f99", "c-product": "#0a7ea4", "c-research": "#6b3fa0", "c-frontier": "#1f6f5c", "c-policy": "#6e6e73",
+    },
+    hero: {
+      bg: "radial-gradient(120% 95% at 88% -5%, #12286b 0%, #081438 42%, #030716 100%)",
+      text: "#f5f5f7", "text-2": "#c9d1e6", muted: "#8590ad", "accent-ink": "#a5bfff",
+      line: "rgba(255,255,255,.12)", "line-2": "rgba(255,255,255,.2)", "bg-2": "rgba(255,255,255,.06)",
+    },
+  },
+};
+const PALETTE_NAME = process.env.PALETTE || null; // set after data is read
+const vars = (o) => Object.entries(o).map(([k, v]) => `--${k}: ${v};`).join(" ");
+
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap" rel="stylesheet">`;
@@ -28,6 +81,15 @@ if (stories.length < 1 || stories.length > 5) {
   );
   process.exit(1);
 }
+
+const palette = PALETTES[PALETTE_NAME || data.palette || "bordeaux"] || PALETTES.bordeaux;
+const altMode = palette.mode === "light" ? "dark" : "light";
+const paletteCSS = `
+  :root { ${vars(palette[palette.mode])} }
+  :root[data-theme="alt"] { ${vars(palette[altMode])} }
+  .slide.title { background: ${palette.hero.bg}; ${vars(Object.fromEntries(Object.entries(palette.hero).filter(([k]) => k !== "bg")))} }
+  .slide.title { color: var(--text); }
+  .slide.title .chip { color: var(--text-2); }`;
 
 const briefs = (data.briefs || []).slice(0, 6);
 const signals = (data.signals || []).slice(0, 3);
@@ -303,37 +365,12 @@ const html = `<!DOCTYPE html>
 ${FONTS}
 <style>
   :root {
-    /* Clinical editorial: paper, ink and a deep red accent */
-    --bg: #f7f4ee;
-    --bg-2: #fffdf9;
-    --line: #e6e0d4;
-    --line-2: #d3cbbb;
-    --grid: transparent;
-    --text: #1a1d24;
-    --text-2: #3e434d;
-    --muted: #8b8579;
-    --accent: #b4322a;
-    --accent-ink: #b4322a;
-    --on-accent: #fffdf9;
-    --glow: transparent;
-    --glow-2: transparent;
-    --shadow: 0 1px 2px rgba(26,29,36,.04), 0 8px 24px -12px rgba(26,29,36,.12);
-    --c-regulation: #b4322a; --c-product: #1f4e8c; --c-research: #7a3b69;
-    --c-frontier: #2f6f66; --c-policy: #6b675f;
     --sans: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
     --display: "Newsreader", "Iowan Old Style", Georgia, serif;
-    --mono: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --mono: var(--sans);
     --px: clamp(28px, 6.5vw, 120px);
   }
-  :root[data-theme="dark"] {
-    --bg: #14161a; --bg-2: #1c1f25;
-    --line: #2b2f36; --line-2: #3b404a;
-    --text: #f1ede4; --text-2: #c9c4b9; --muted: #8d887e;
-    --accent: #e0705f; --accent-ink: #e8836f; --on-accent: #14161a;
-    --shadow: none;
-    --c-regulation: #e8836f; --c-product: #8fb4e8; --c-research: #d39cc6;
-    --c-frontier: #7fc4b8; --c-policy: #b0aa9e;
-  }
+  ${paletteCSS}
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
   body {
@@ -356,6 +393,7 @@ ${FONTS}
             mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 85%);
   }
   .slide, .progress, .hint { z-index: 1; }
+  .slide { background: transparent; }
   .fit { width: 100%; }
   a { color: inherit; }
 
@@ -392,7 +430,7 @@ ${FONTS}
     display: inline-flex; align-items: center; gap: .6em;
     font-family: var(--mono); font-size: clamp(10px, .7vw, 11.5px); font-weight: 400; letter-spacing: .1em;
     text-transform: uppercase; color: var(--text-2);
-    padding: .5em .8em; border-radius: 4px;
+    padding: .5em .9em; border-radius: 999px;
     border: 1px solid var(--line-2);
     background: color-mix(in srgb, var(--bg-2) 70%, transparent);
     white-space: nowrap;
@@ -455,7 +493,7 @@ ${FONTS}
   }
   .why {
     margin-top: 2.4vh; max-width: 100%; padding: 2.4vh 1.6vw;
-    border-radius: 6px; border: 1px solid var(--line); border-left: 1px solid var(--accent);
+    border-radius: 14px; border: 1px solid var(--line); border-left: 3px solid var(--accent);
     background: var(--bg-2); box-shadow: var(--shadow);
     backdrop-filter: blur(6px);
   }
@@ -467,7 +505,7 @@ ${FONTS}
   .read {
     display: inline-flex; gap: .5em; align-items: center;
     font-size: clamp(12px, .9vw, 14px); font-weight: 350; text-decoration: none;
-    color: var(--text); padding: .65em 1.1em; border-radius: 8px; border: 1px solid var(--line-2);
+    color: var(--text); padding: .65em 1.2em; border-radius: 999px; border: 1px solid var(--line-2);
     transition: color .2s, border-color .2s, background .2s;
   }
   .read:hover { color: var(--on-accent); background: var(--accent); border-color: var(--accent); }
@@ -502,7 +540,7 @@ ${FONTS}
   /* ---------- decoder (story sidebar) ---------- */
   .decoder {
     margin-top: 1vh; padding: 2.2vh 1.3vw .6vh; width: 100%;
-    border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px;
+    border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 14px;
     background: var(--bg-2); box-shadow: var(--shadow);
   }
   .decoder .label, .gloss-label { font-family: var(--mono); font-size: clamp(9px, .64vw, 11px); letter-spacing: .16em;
@@ -529,7 +567,7 @@ ${FONTS}
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.6vw; max-width: 1400px; }
   .card {
     display: flex; flex-direction: column; gap: 1.6vh; padding: 3vh 1.8vw;
-    border: 1px solid var(--line); border-radius: 6px;
+    border: 1px solid var(--line); border-radius: 18px;
     background: var(--bg-2); box-shadow: var(--shadow);
   }
   .card h3 { font-family: var(--display); font-weight: 400; font-size: clamp(17px, 1.45vw, 24px); line-height: 1.25; letter-spacing: -.02em; }
@@ -649,7 +687,7 @@ ${FONTS}
   const dots = [...prog.children];
   const root = document.documentElement;
   const saved = localStorage.getItem("caiw-theme");
-  if (saved === "dark") root.dataset.theme = "dark";
+  if (saved === "alt") root.dataset.theme = "alt";
 
   let i = Math.min(Math.max(parseInt(location.hash.slice(1), 10) - 1 || 0, 0), slides.length - 1);
   const show = () => {
@@ -665,8 +703,8 @@ ${FONTS}
     else if (e.key === "End") go(slides.length - 1);
     else if (e.key === "f") document.fullscreenElement ? document.exitFullscreen() : root.requestFullscreen?.();
     else if (e.key === "t") {
-      if (root.dataset.theme === "dark") delete root.dataset.theme; else root.dataset.theme = "dark";
-      localStorage.setItem("caiw-theme", root.dataset.theme || "light");
+      if (root.dataset.theme === "alt") delete root.dataset.theme; else root.dataset.theme = "alt";
+      localStorage.setItem("caiw-theme", root.dataset.theme || "default");
     }
   });
   document.addEventListener("click", (e) => {
@@ -723,8 +761,10 @@ console.log(`Wrote ${outPath} (${stories.length} stories, week ${weekNo} of ${ye
 <title>Clinical AI Weekly · Archive</title>
 ${FONTS}
 <style>
-  :root { --bg:#f7f4ee; --bg-2:#fffdf9; --line:#e6e0d4; --text:#1a1d24; --text-2:#3e434d; --muted:#8b8579; --accent:#b4322a;
+  :root { ${vars(palette[palette.mode])}
     --display:"Newsreader", "Iowan Old Style", Georgia, serif; --sans:"Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; }
+  .hero { margin: -6vh calc(-1 * clamp(24px, 8vw, 140px)) 0; padding: 6vh clamp(24px, 8vw, 140px) 9vh;
+    background: ${palette.hero.bg}; ${vars(Object.fromEntries(Object.entries(palette.hero).filter(([k]) => k !== "bg")))} color: var(--text); }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased;
     padding:6vh clamp(24px, 8vw, 140px); min-height:100vh; }
@@ -734,14 +774,15 @@ ${FONTS}
   .mark { width:9px; height:9px; border-radius:50%; background:var(--accent); }
   .wm { font-family:var(--display); font-size:20px; font-weight:500; letter-spacing:-.01em; text-transform:none; color:var(--text); }
   .wm i { font-weight:400; color:var(--text-2); }
-  .eyebrow { margin-top:14vh; font-size:12px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
+  .eyebrow { margin-top:12vh; font-size:12px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-ink); }
   h1 { font-family:var(--display); font-weight:300; font-size:clamp(48px, 6.6vw, 112px); letter-spacing:-.025em; line-height:1; margin:2.4vh 0 2.4vh; }
-  h1 em { font-style:italic; color:var(--accent); }
+  h1 em { font-style:italic; color:var(--accent-ink); }
   .lede { color:var(--text-2); font-family:var(--display); font-size:clamp(18px, 1.5vw, 24px); max-width:52ch; line-height:1.45; }
-  .list { margin-top:8vh; border-top:1px solid var(--text); }
+  .list { margin-top:6vh; border-top:1px solid var(--line-2); }
   .row { display:grid; grid-template-columns:7em 12em 1fr auto; gap:2vw; align-items:baseline; padding:2.4vh 0;
     border-bottom:1px solid var(--line); text-decoration:none; color:var(--text-2); transition:background .2s; }
-  .row:hover { background:var(--bg-2); }
+  .row { border-radius:12px; padding-left:1vw; padding-right:1vw; }
+  .row:hover { background:var(--bg-2); box-shadow:var(--shadow); }
   .wk, .dt, .go { font-size:12px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
   .wk { color:var(--text); }
   .latest .wk, .latest .go { color:var(--accent); }
@@ -749,10 +790,12 @@ ${FONTS}
   footer { margin-top:10vh; font-size:12px; color:var(--muted); }
   @media (max-width:760px) { .row { grid-template-columns:1fr; gap:.6em; } }
 </style></head><body>
+<section class="hero">
 <header><div class="brand">${WORDMARK}</div><div>Archive</div></header>
 <div class="eyebrow">Weekly team update</div>
 <h1>This week in<br><em>clinical</em> AI</h1>
 <p class="lede">A short weekly briefing on clinical and healthcare AI news, written for clinicians: what happened, how strong the evidence is, and what it means at the bedside.</p>
+</section>
 <nav class="list">${rows}
 </nav>
 <footer>by ${esc(AUTHOR)}</footer>

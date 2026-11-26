@@ -149,5 +149,6 @@
     "Dana-Farber",
     "Omni-Triage",
     "MedChemBench"
-  ]
+  ],
+  "palette": "bordeaux"
 }

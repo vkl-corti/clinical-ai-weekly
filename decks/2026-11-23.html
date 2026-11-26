@@ -10,37 +10,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap" rel="stylesheet">
 <style>
   :root {
-    /* Clinical editorial: paper, ink and a deep red accent */
-    --bg: #f7f4ee;
-    --bg-2: #fffdf9;
-    --line: #e6e0d4;
-    --line-2: #d3cbbb;
-    --grid: transparent;
-    --text: #1a1d24;
-    --text-2: #3e434d;
-    --muted: #8b8579;
-    --accent: #b4322a;
-    --accent-ink: #b4322a;
-    --on-accent: #fffdf9;
-    --glow: transparent;
-    --glow-2: transparent;
-    --shadow: 0 1px 2px rgba(26,29,36,.04), 0 8px 24px -12px rgba(26,29,36,.12);
-    --c-regulation: #b4322a; --c-product: #1f4e8c; --c-research: #7a3b69;
-    --c-frontier: #2f6f66; --c-policy: #6b675f;
     --sans: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
     --display: "Newsreader", "Iowan Old Style", Georgia, serif;
-    --mono: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --mono: var(--sans);
     --px: clamp(28px, 6.5vw, 120px);
   }
-  :root[data-theme="dark"] {
-    --bg: #14161a; --bg-2: #1c1f25;
-    --line: #2b2f36; --line-2: #3b404a;
-    --text: #f1ede4; --text-2: #c9c4b9; --muted: #8d887e;
-    --accent: #e0705f; --accent-ink: #e8836f; --on-accent: #14161a;
-    --shadow: none;
-    --c-regulation: #e8836f; --c-product: #8fb4e8; --c-research: #d39cc6;
-    --c-frontier: #7fc4b8; --c-policy: #b0aa9e;
-  }
+  
+  :root { --bg: #fbfbfd; --bg-2: #ffffff; --line: #e8e8ed; --line-2: #d2d2d7; --text: #1d1d1f; --text-2: #424245; --muted: #86868b; --accent: #6e1f3f; --accent-ink: #6e1f3f; --on-accent: #ffffff; --glow: transparent; --shadow: 0 1px 2px rgba(0,0,0,.04), 0 14px 36px -18px rgba(0,0,0,.16); --c-regulation: #6e1f3f; --c-product: #0a5bd3; --c-research: #6b3fa0; --c-frontier: #1f6f5c; --c-policy: #6e6e73; }
+  :root[data-theme="alt"] { --bg: #100709; --bg-2: #1b0f15; --line: #2c1b24; --line-2: #433039; --text: #f5f5f7; --text-2: #cbc3c7; --muted: #8e8590; --accent: #c2577f; --accent-ink: #e7a3bf; --on-accent: #100709; --glow: rgba(110,31,63,.38); --shadow: none; --c-regulation: #e7a3bf; --c-product: #8ab4ff; --c-research: #c9a7ef; --c-frontier: #7fd1bd; --c-policy: #a1a1a6; }
+  .slide.title { background: radial-gradient(120% 95% at 88% -5%, #5a1636 0%, #2a0c1b 42%, #0f0508 100%); --text: #f5f5f7; --text-2: #d6cdd2; --muted: #9a8f96; --accent-ink: #eaa9c4; --line: rgba(255,255,255,.12); --line-2: rgba(255,255,255,.2); --bg-2: rgba(255,255,255,.06); --c-regulation: #eaa9c4; --c-product: #8ab4ff; --c-research: #c9a7ef; --c-frontier: #7fd1bd; --c-policy: #b0a8ad; }
+  .slide.title { color: var(--text); }
+  .slide.title .chip { color: var(--text-2); }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
   body {
@@ -63,6 +43,7 @@
             mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 85%);
   }
   .slide, .progress, .hint { z-index: 1; }
+  .slide { background: transparent; }
   .fit { width: 100%; }
   a { color: inherit; }
 
@@ -99,7 +80,7 @@
     display: inline-flex; align-items: center; gap: .6em;
     font-family: var(--mono); font-size: clamp(10px, .7vw, 11.5px); font-weight: 400; letter-spacing: .1em;
     text-transform: uppercase; color: var(--text-2);
-    padding: .5em .8em; border-radius: 4px;
+    padding: .5em .9em; border-radius: 999px;
     border: 1px solid var(--line-2);
     background: color-mix(in srgb, var(--bg-2) 70%, transparent);
     white-space: nowrap;
@@ -162,7 +143,7 @@
   }
   .why {
     margin-top: 2.4vh; max-width: 100%; padding: 2.4vh 1.6vw;
-    border-radius: 6px; border: 1px solid var(--line); border-left: 1px solid var(--accent);
+    border-radius: 14px; border: 1px solid var(--line); border-left: 3px solid var(--accent);
     background: var(--bg-2); box-shadow: var(--shadow);
     backdrop-filter: blur(6px);
   }
@@ -174,7 +155,7 @@
   .read {
     display: inline-flex; gap: .5em; align-items: center;
     font-size: clamp(12px, .9vw, 14px); font-weight: 350; text-decoration: none;
-    color: var(--text); padding: .65em 1.1em; border-radius: 8px; border: 1px solid var(--line-2);
+    color: var(--text); padding: .65em 1.2em; border-radius: 999px; border: 1px solid var(--line-2);
     transition: color .2s, border-color .2s, background .2s;
   }
   .read:hover { color: var(--on-accent); background: var(--accent); border-color: var(--accent); }
@@ -209,7 +190,7 @@
   /* ---------- decoder (story sidebar) ---------- */
   .decoder {
     margin-top: 1vh; padding: 2.2vh 1.3vw .6vh; width: 100%;
-    border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px;
+    border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 14px;
     background: var(--bg-2); box-shadow: var(--shadow);
   }
   .decoder .label, .gloss-label { font-family: var(--mono); font-size: clamp(9px, .64vw, 11px); letter-spacing: .16em;
@@ -236,7 +217,7 @@
   .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.6vw; max-width: 1400px; }
   .card {
     display: flex; flex-direction: column; gap: 1.6vh; padding: 3vh 1.8vw;
-    border: 1px solid var(--line); border-radius: 6px;
+    border: 1px solid var(--line); border-radius: 18px;
     background: var(--bg-2); box-shadow: var(--shadow);
   }
   .card h3 { font-family: var(--display); font-weight: 400; font-size: clamp(17px, 1.45vw, 24px); line-height: 1.25; letter-spacing: -.02em; }
@@ -586,7 +567,7 @@
   const dots = [...prog.children];
   const root = document.documentElement;
   const saved = localStorage.getItem("caiw-theme");
-  if (saved === "dark") root.dataset.theme = "dark";
+  if (saved === "alt") root.dataset.theme = "alt";
 
   let i = Math.min(Math.max(parseInt(location.hash.slice(1), 10) - 1 || 0, 0), slides.length - 1);
   const show = () => {
@@ -602,8 +583,8 @@
     else if (e.key === "End") go(slides.length - 1);
     else if (e.key === "f") document.fullscreenElement ? document.exitFullscreen() : root.requestFullscreen?.();
     else if (e.key === "t") {
-      if (root.dataset.theme === "dark") delete root.dataset.theme; else root.dataset.theme = "dark";
-      localStorage.setItem("caiw-theme", root.dataset.theme || "light");
+      if (root.dataset.theme === "alt") delete root.dataset.theme; else root.dataset.theme = "alt";
+      localStorage.setItem("caiw-theme", root.dataset.theme || "default");
     }
   });
   document.addEventListener("click", (e) => {
