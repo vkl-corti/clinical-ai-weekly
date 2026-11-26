@@ -2,6 +2,37 @@
   "weekOf": "2026-11-23",
   "stories": [
     {
+      "title": "FDA clears AI that predicts 5-year breast cancer risk from mammograms",
+      "category": "Regulation",
+      "url": "https://www.mobihealthnews.com/news/deephealth-wins-fda-clearance-ai-tool-predicts-cancer-risk",
+      "source": "MobiHealthNews",
+      "date": "2026-11-24",
+      "evidence": {
+        "level": 5,
+        "label": "FDA 510(k) clearance",
+        "detail": "65k-mammogram validation, no accuracy figures published"
+      },
+      "setting": "Breast screening · radiology",
+      "horizon": "Now (US)",
+      "bullets": [
+        "DeepHealth's Mammo Risk (510(k) K262709) estimates 3-, 4- and 5-year breast cancer risk from an existing 3D screening mammogram, with no questionnaire",
+        "Validated on 65,000+ screening mammograms from 10 US sites, with consistent performance reported in Black women and dense breasts; no accuracy numbers released",
+        "Not a cancer detector, no outcome data yet, and not the first: Clairity Breast got FDA De Novo for 5-year risk from 2D mammograms in May 2025"
+      ],
+      "why": "Image-based risk could replace questionnaire models like Tyrer-Cuzick when deciding who needs supplemental MRI or shorter screening intervals.",
+      "question": "If AI flagged high 5-year risk on a normal mammogram, what would you do differently, and what evidence would you want first?",
+      "terms": [
+        {
+          "term": "Image-based risk model",
+          "def": "AI that reads a normal-looking image for subtle patterns linked to future disease, not for cancer present today. The output is a risk estimate, like a Tyrer-Cuzick score, not a finding."
+        },
+        {
+          "term": "De Novo authorization",
+          "def": "FDA route for a new kind of device with nothing equivalent on the market. Requires more evidence than a 510(k), which only needs equivalence to an existing device."
+        }
+      ]
+    },
+    {
       "title": "AI-designed drugs are genuinely outperforming in Phase II",
       "category": "Research",
       "url": "https://www.pymnts.com/news/artificial-intelligence/2026/ai-drug-developers-post-higher-trial-success-as-deals-hit-46-billion/",
@@ -31,36 +62,6 @@
         }
       ],
       "question": "Would knowing a drug was AI-designed change how you read its trial data?"
-    },
-    {
-      "title": "Anthropic's $2 trillion Nasdaq debut — the largest IPO on record",
-      "category": "Frontier",
-      "url": "https://www.reuters.com/business/anthropic-ipo-prospectus-shows-key-executives-board-2026-11-19/",
-      "source": "Reuters",
-      "date": "2026-11-19",
-      "bullets": [
-        "Anthropic (maker of Claude) hit a $2 trillion market value in its Nasdaq debut on Nov 19, surpassing SpaceX's June listing",
-        "Shares opened 34% above the $83 IPO price, with reported proceeds of $81.3 billion",
-        "Reuters reports Anthropic holds a revenue edge over OpenAI with smaller losses — and both labs are acquiring biotech startups (OpenAI bought Orchestra Bio in October per Axios)"
-      ],
-      "why": "The lab behind Claude — the model family much clinical AI tooling builds on — is now massively capitalized and openly expanding into medicine and biology.",
-      "evidence": {
-        "level": 1,
-        "label": "Market news"
-      },
-      "setting": "Indirect · the companies behind clinical AI tools",
-      "horizon": "No direct patient impact",
-      "terms": [
-        {
-          "term": "IPO",
-          "def": "Initial public offering: a private company sells shares on a stock exchange for the first time. It raises cash and requires public, audited reporting, so outsiders learn far more about how the company works and earns money."
-        },
-        {
-          "term": "Foundation model",
-          "def": "A large general-purpose AI model (Claude, GPT, Gemini) trained on vast amounts of text. Most clinical AI products, such as scribes, chatbots and coding tools, are built on top of one rather than from scratch."
-        }
-      ],
-      "question": "Does it matter to you which company's model sits underneath a clinical tool you use?"
     },
     {
       "title": "GPT-6.2 Astra ships to harsh reviews — but tops the med-chemistry benchmark",
@@ -96,12 +97,12 @@
   ],
   "briefs": [
     {
-      "title": "FDA clears DeepHealth AI that predicts 5-year breast cancer risk from routine 3D mammograms",
-      "category": "Regulation",
-      "url": "https://casrai.org/news/fda-clears-deephealth-ai-five-year-breast-cancer-risk-3d-mammogram-2026",
-      "source": "CASRAI",
-      "date": "2026-11-24",
-      "note": "510(k) clearance; described as the first AI cleared for a 3–5 year risk window: a shift from detecting cancer to forecasting it."
+      "title": "Anthropic's $2 trillion Nasdaq debut, the largest IPO on record",
+      "category": "Frontier",
+      "url": "https://www.reuters.com/business/anthropic-ipo-prospectus-shows-key-executives-board-2026-11-19/",
+      "source": "Reuters",
+      "date": "2026-11-19",
+      "note": "The maker of Claude, a model many clinical AI tools are built on, is now public and heavily capitalized. No direct patient impact."
     },
     {
       "title": "FDA clears a2z-Omni-Triage: abdomen-pelvis CT triage flagging nine findings",
@@ -146,6 +147,10 @@
     {
       "term": "Triage AI",
       "def": "Software that flags and reprioritises cases (e.g. a suspected bleed on CT) so a clinician sees them sooner. The clinician still reads the case and makes the diagnosis."
+    },
+    {
+      "term": "IPO",
+      "def": "Initial public offering: a private company sells shares on a stock exchange for the first time. It raises cash and requires public, audited reporting, so outsiders learn far more about how the company works and earns money."
     }
   ]
 }

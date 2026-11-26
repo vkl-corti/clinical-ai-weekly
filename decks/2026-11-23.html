@@ -67,6 +67,7 @@
             mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 85%);
   }
   .slide, .progress, .hint { z-index: 1; }
+  .fit { width: 100%; }
   a { color: inherit; }
 
   /* ---------- slide frame ---------- */
@@ -322,13 +323,13 @@
     <ol class="agenda">
           <li>
             <span class="idx">01</span>
-            <span class="t">AI-designed drugs are genuinely outperforming in Phase II</span>
-            <span class="chip research">Research</span>
+            <span class="t">FDA clears AI that predicts 5-year breast cancer risk from mammograms</span>
+            <span class="chip regulation">Regulation</span>
           </li>
           <li>
             <span class="idx">02</span>
-            <span class="t">Anthropic&#39;s $2 trillion Nasdaq debut — the largest IPO on record</span>
-            <span class="chip frontier">Frontier</span>
+            <span class="t">AI-designed drugs are genuinely outperforming in Phase II</span>
+            <span class="chip research">Research</span>
           </li>
           <li>
             <span class="idx">03</span>
@@ -336,7 +337,7 @@
             <span class="chip frontier">Frontier</span>
           </li>
     </ol>
-    <div class="extras"><span>In brief · 3</span><span>Weak signals · 2</span><span>Decoder · 8 terms</span></div>
+    <div class="extras"><span>In brief · 3</span><span>Weak signals · 2</span><span>Decoder · 9 terms</span></div>
   </section>
   
     <section class="slide story">
@@ -363,29 +364,29 @@
       <div class="story-grid">
         <aside class="meta">
           <div class="num">01</div>
-          <span class="chip research">Research</span>
+          <span class="chip regulation">Regulation</span>
           <div class="src">
-            <div class="src-name">PYMNTS</div>
-            <div class="src-date">Nov 23</div>
+            <div class="src-name">MobiHealthNews</div>
+            <div class="src-date">Nov 24</div>
           </div>
-          <a class="read" href="https://www.pymnts.com/news/artificial-intelligence/2026/ai-drug-developers-post-higher-trial-success-as-deals-hit-46-billion/" target="_blank" rel="noopener">Read source <span>↗</span></a>
+          <a class="read" href="https://www.mobihealthnews.com/news/deephealth-wins-fda-clearance-ai-tool-predicts-cancer-risk" target="_blank" rel="noopener">Read source <span>↗</span></a>
           
           <div class="decoder">
             <div class="label">Decoder</div>
-            <dl><dt>AI-designed drug</dt><dd>An ordinary medicine (pill or biologic) where machine-learning models helped choose the target or design the molecule. It passes the same trials and approval as any drug: &#39;AI&#39; describes how it was found, not how it works.</dd><dt>Phase II trial</dt><dd>The first trial testing whether a drug actually works in patients with the condition (typically ~100–300), after Phase I safety testing. Historically the stage where most candidates fail.</dd></dl>
+            <dl><dt>Image-based risk model</dt><dd>AI that reads a normal-looking image for subtle patterns linked to future disease, not for cancer present today. The output is a risk estimate, like a Tyrer-Cuzick score, not a finding.</dd><dt>De Novo authorization</dt><dd>FDA route for a new kind of device with nothing equivalent on the market. Requires more evidence than a 510(k), which only needs equivalence to an existing device.</dd></dl>
           </div>
         </aside>
         <div class="body">
-          <h2>AI-designed drugs are genuinely outperforming in Phase II</h2>
+          <h2>FDA clears AI that predicts 5-year breast cancer risk from mammograms</h2>
           <div class="lens">
             <div class="lens-item">
               <span class="k">Evidence</span>
-              <span class="v"><span class="meter" title="Analysis or benchmark"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span>Consultancy analysis<span class="d"> · 46 programs, not peer-reviewed</span></span>
+              <span class="v"><span class="meter" title="RCT or regulatory clearance"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span>FDA 510(k) clearance<span class="d"> · 65k-mammogram validation, no accuracy figures published</span></span>
             </div>
-            <div class="lens-item"><span class="k">Where in care</span><span class="v">Drug development · Phase II trials</span></div>
-            <div class="lens-item"><span class="k">At the bedside</span><span class="v">5+ years to approved drugs</span></div></div>
-          <ul class="bullets"><li>Oliver Wyman analysis: AI-native drug developers progressed 45% of Phase II programs successfully, vs 29% for the broader sector (46-program sample)</li><li>AI drug discovery investment and licensing deals hit $46 billion in H1 2026 — after $43B in 2025 and just $12B in 2024</li><li>Money is following results: the data suggests AI-designed pipelines have measurable, trial-level signal — not just hype</li></ul>
-          <div class="why"><div class="why-label">Why it matters for clinicians</div><p>AI-native pharma pipelines are scaling fast — clinical teams will increasingly see AI-designed drugs in trials and eventually in practice.</p><div class="q"><span class="why-label">Discuss</span><p>Would knowing a drug was AI-designed change how you read its trial data?</p></div></div>
+            <div class="lens-item"><span class="k">Where in care</span><span class="v">Breast screening · radiology</span></div>
+            <div class="lens-item"><span class="k">At the bedside</span><span class="v">Now (US)</span></div></div>
+          <ul class="bullets"><li>DeepHealth&#39;s Mammo Risk (510(k) K262709) estimates 3-, 4- and 5-year breast cancer risk from an existing 3D screening mammogram, with no questionnaire</li><li>Validated on 65,000+ screening mammograms from 10 US sites, with consistent performance reported in Black women and dense breasts; no accuracy numbers released</li><li>Not a cancer detector, no outcome data yet, and not the first: Clairity Breast got FDA De Novo for 5-year risk from 2D mammograms in May 2025</li></ul>
+          <div class="why"><div class="why-label">Why it matters for clinicians</div><p>Image-based risk could replace questionnaire models like Tyrer-Cuzick when deciding who needs supplemental MRI or shorter screening intervals.</p><div class="q"><span class="why-label">Discuss</span><p>If AI flagged high 5-year risk on a normal mammogram, what would you do differently, and what evidence would you want first?</p></div></div>
         </div>
       </div>
     </section>
@@ -413,29 +414,29 @@
       <div class="story-grid">
         <aside class="meta">
           <div class="num">02</div>
-          <span class="chip frontier">Frontier</span>
+          <span class="chip research">Research</span>
           <div class="src">
-            <div class="src-name">Reuters</div>
-            <div class="src-date">Nov 19</div>
+            <div class="src-name">PYMNTS</div>
+            <div class="src-date">Nov 23</div>
           </div>
-          <a class="read" href="https://www.reuters.com/business/anthropic-ipo-prospectus-shows-key-executives-board-2026-11-19/" target="_blank" rel="noopener">Read source <span>↗</span></a>
+          <a class="read" href="https://www.pymnts.com/news/artificial-intelligence/2026/ai-drug-developers-post-higher-trial-success-as-deals-hit-46-billion/" target="_blank" rel="noopener">Read source <span>↗</span></a>
           
           <div class="decoder">
             <div class="label">Decoder</div>
-            <dl><dt>IPO</dt><dd>Initial public offering: a private company sells shares on a stock exchange for the first time. It raises cash and requires public, audited reporting, so outsiders learn far more about how the company works and earns money.</dd><dt>Foundation model</dt><dd>A large general-purpose AI model (Claude, GPT, Gemini) trained on vast amounts of text. Most clinical AI products, such as scribes, chatbots and coding tools, are built on top of one rather than from scratch.</dd></dl>
+            <dl><dt>AI-designed drug</dt><dd>An ordinary medicine (pill or biologic) where machine-learning models helped choose the target or design the molecule. It passes the same trials and approval as any drug: &#39;AI&#39; describes how it was found, not how it works.</dd><dt>Phase II trial</dt><dd>The first trial testing whether a drug actually works in patients with the condition (typically ~100–300), after Phase I safety testing. Historically the stage where most candidates fail.</dd></dl>
           </div>
         </aside>
         <div class="body">
-          <h2>Anthropic&#39;s $2 trillion Nasdaq debut — the largest IPO on record</h2>
+          <h2>AI-designed drugs are genuinely outperforming in Phase II</h2>
           <div class="lens">
             <div class="lens-item">
               <span class="k">Evidence</span>
-              <span class="v"><span class="meter" title="Announcement / press"><i class="on"></i><i class=""></i><i class=""></i><i class=""></i><i class=""></i></span>Market news</span>
+              <span class="v"><span class="meter" title="Analysis or benchmark"><i class="on"></i><i class="on"></i><i class=""></i><i class=""></i><i class=""></i></span>Consultancy analysis<span class="d"> · 46 programs, not peer-reviewed</span></span>
             </div>
-            <div class="lens-item"><span class="k">Where in care</span><span class="v">Indirect · the companies behind clinical AI tools</span></div>
-            <div class="lens-item"><span class="k">At the bedside</span><span class="v">No direct patient impact</span></div></div>
-          <ul class="bullets"><li>Anthropic (maker of Claude) hit a $2 trillion market value in its Nasdaq debut on Nov 19, surpassing SpaceX&#39;s June listing</li><li>Shares opened 34% above the $83 IPO price, with reported proceeds of $81.3 billion</li><li>Reuters reports Anthropic holds a revenue edge over OpenAI with smaller losses — and both labs are acquiring biotech startups (OpenAI bought Orchestra Bio in October per Axios)</li></ul>
-          <div class="why"><div class="why-label">Why it matters for clinicians</div><p>The lab behind Claude — the model family much clinical AI tooling builds on — is now massively capitalized and openly expanding into medicine and biology.</p><div class="q"><span class="why-label">Discuss</span><p>Does it matter to you which company&#39;s model sits underneath a clinical tool you use?</p></div></div>
+            <div class="lens-item"><span class="k">Where in care</span><span class="v">Drug development · Phase II trials</span></div>
+            <div class="lens-item"><span class="k">At the bedside</span><span class="v">5+ years to approved drugs</span></div></div>
+          <ul class="bullets"><li>Oliver Wyman analysis: AI-native drug developers progressed 45% of Phase II programs successfully, vs 29% for the broader sector (46-program sample)</li><li>AI drug discovery investment and licensing deals hit $46 billion in H1 2026 — after $43B in 2025 and just $12B in 2024</li><li>Money is following results: the data suggests AI-designed pipelines have measurable, trial-level signal — not just hype</li></ul>
+          <div class="why"><div class="why-label">Why it matters for clinicians</div><p>AI-native pharma pipelines are scaling fast — clinical teams will increasingly see AI-designed drugs in trials and eventually in practice.</p><div class="q"><span class="why-label">Discuss</span><p>Would knowing a drug was AI-designed change how you read its trial data?</p></div></div>
         </div>
       </div>
     </section>
@@ -515,9 +516,9 @@
       <h2 class="section-h">Also this week</h2>
       <ul class="brief-list">
         <li>
-          <span class="chip regulation">Regulation</span>
-          <div class="bt"><a href="https://casrai.org/news/fda-clears-deephealth-ai-five-year-breast-cancer-risk-3d-mammogram-2026" target="_blank" rel="noopener">FDA clears DeepHealth AI that predicts 5-year breast cancer risk from routine 3D mammograms</a><p>510(k) clearance; described as the first AI cleared for a 3–5 year risk window: a shift from detecting cancer to forecasting it.</p></div>
-          <span class="bs">CASRAI · Nov 24</span>
+          <span class="chip frontier">Frontier</span>
+          <div class="bt"><a href="https://www.reuters.com/business/anthropic-ipo-prospectus-shows-key-executives-board-2026-11-19/" target="_blank" rel="noopener">Anthropic&#39;s $2 trillion Nasdaq debut, the largest IPO on record</a><p>The maker of Claude, a model many clinical AI tools are built on, is now public and heavily capitalized. No direct patient impact.</p></div>
+          <span class="bs">Reuters · Nov 19</span>
         </li>
         <li>
           <span class="chip regulation">Regulation</span>
@@ -594,7 +595,7 @@
       </footer>
       <div class="eyebrow">Decoder</div>
       <h2 class="section-h">This week's terms, <em>in plain language</em></h2>
-      <dl class="gloss dense"><div><dt>AI-designed drug</dt><dd>An ordinary medicine (pill or biologic) where machine-learning models helped choose the target or design the molecule. It passes the same trials and approval as any drug: &#39;AI&#39; describes how it was found, not how it works.</dd></div><div><dt>Phase II trial</dt><dd>The first trial testing whether a drug actually works in patients with the condition (typically ~100–300), after Phase I safety testing. Historically the stage where most candidates fail.</dd></div><div><dt>IPO</dt><dd>Initial public offering: a private company sells shares on a stock exchange for the first time. It raises cash and requires public, audited reporting, so outsiders learn far more about how the company works and earns money.</dd></div><div><dt>Foundation model</dt><dd>A large general-purpose AI model (Claude, GPT, Gemini) trained on vast amounts of text. Most clinical AI products, such as scribes, chatbots and coding tools, are built on top of one rather than from scratch.</dd></div><div><dt>Benchmark</dt><dd>A fixed test set used to score AI models, like a board exam. A high score shows the model answers those questions well, not that it performs safely in real practice.</dd></div><div><dt>Tokens &amp; context window</dt><dd>A token is ~¾ of a word; models are priced per million tokens. The context window is how much the model can read at once: 1M tokens ≈ 750,000 words, enough for many complete patient records.</dd></div><div><dt>510(k) clearance</dt><dd>The most common FDA route for devices: the maker shows the product is &#39;substantially equivalent&#39; to one already on the market. Usually requires less clinical evidence than full approval (PMA).</dd></div><div><dt>Triage AI</dt><dd>Software that flags and reprioritises cases (e.g. a suspected bleed on CT) so a clinician sees them sooner. The clinician still reads the case and makes the diagnosis.</dd></div>
+      <dl class="gloss dense"><div><dt>Image-based risk model</dt><dd>AI that reads a normal-looking image for subtle patterns linked to future disease, not for cancer present today. The output is a risk estimate, like a Tyrer-Cuzick score, not a finding.</dd></div><div><dt>De Novo authorization</dt><dd>FDA route for a new kind of device with nothing equivalent on the market. Requires more evidence than a 510(k), which only needs equivalence to an existing device.</dd></div><div><dt>AI-designed drug</dt><dd>An ordinary medicine (pill or biologic) where machine-learning models helped choose the target or design the molecule. It passes the same trials and approval as any drug: &#39;AI&#39; describes how it was found, not how it works.</dd></div><div><dt>Phase II trial</dt><dd>The first trial testing whether a drug actually works in patients with the condition (typically ~100–300), after Phase I safety testing. Historically the stage where most candidates fail.</dd></div><div><dt>Benchmark</dt><dd>A fixed test set used to score AI models, like a board exam. A high score shows the model answers those questions well, not that it performs safely in real practice.</dd></div><div><dt>Tokens &amp; context window</dt><dd>A token is ~¾ of a word; models are priced per million tokens. The context window is how much the model can read at once: 1M tokens ≈ 750,000 words, enough for many complete patient records.</dd></div><div><dt>510(k) clearance</dt><dd>The most common FDA route for devices: the maker shows the product is &#39;substantially equivalent&#39; to one already on the market. Usually requires less clinical evidence than full approval (PMA).</dd></div><div><dt>Triage AI</dt><dd>Software that flags and reprioritises cases (e.g. a suspected bleed on CT) so a clinician sees them sooner. The clinician still reads the case and makes the diagnosis.</dd></div><div><dt>IPO</dt><dd>Initial public offering: a private company sells shares on a stock exchange for the first time. It raises cash and requires public, audited reporting, so outsiders learn far more about how the company works and earns money.</dd></div>
       </dl>
     </section>
   <section class="slide title outro">
@@ -621,8 +622,8 @@
     <div class="eyebrow">That's the week</div>
     <h1>Questions &amp;<br><em>discussion</em></h1>
     <ul class="sources">
-          <li><span class="idx">01</span><a href="https://www.pymnts.com/news/artificial-intelligence/2026/ai-drug-developers-post-higher-trial-success-as-deals-hit-46-billion/" target="_blank" rel="noopener">PYMNTS</a><span class="d">Nov 23</span></li>
-          <li><span class="idx">02</span><a href="https://www.reuters.com/business/anthropic-ipo-prospectus-shows-key-executives-board-2026-11-19/" target="_blank" rel="noopener">Reuters</a><span class="d">Nov 19</span></li>
+          <li><span class="idx">01</span><a href="https://www.mobihealthnews.com/news/deephealth-wins-fda-clearance-ai-tool-predicts-cancer-risk" target="_blank" rel="noopener">MobiHealthNews</a><span class="d">Nov 24</span></li>
+          <li><span class="idx">02</span><a href="https://www.pymnts.com/news/artificial-intelligence/2026/ai-drug-developers-post-higher-trial-success-as-deals-hit-46-billion/" target="_blank" rel="noopener">PYMNTS</a><span class="d">Nov 23</span></li>
           <li><span class="idx">03</span><a href="https://openai.com/index/introducing-gpt-6-2-astra-sol" target="_blank" rel="noopener">OpenAI / Writingmate weekly digest</a><span class="d">Nov 20</span></li>
     </ul>
   </section>
@@ -631,6 +632,25 @@
 <div class="hint" id="hint"><kbd>←</kbd> <kbd>→</kbd> navigate · <kbd>F</kbd> fullscreen · <kbd>T</kbd> theme</div>
 <script>
   const slides = [...document.querySelectorAll(".slide")];
+  // wrap each slide's content so it can be scaled down if it would overflow
+  slides.forEach((sl) => {
+    const fit = document.createElement("div");
+    fit.className = "fit";
+    [...sl.children].filter((c) => !c.classList.contains("bar")).forEach((c) => fit.appendChild(c));
+    sl.appendChild(fit);
+  });
+  const fitAll = () =>
+    slides.forEach((sl) => {
+      const fit = sl.querySelector(".fit");
+      fit.style.zoom = 1;
+      const cs = getComputedStyle(sl);
+      const avail = sl.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+      const h = fit.scrollHeight;
+      if (h > avail) fit.style.zoom = Math.max(avail / h, 0.6).toFixed(3);
+    });
+  fitAll();
+  document.fonts?.ready.then(fitAll);
+  addEventListener("resize", fitAll);
   const prog = document.getElementById("progress");
   prog.innerHTML = slides.map(() => "<i></i>").join("");
   const dots = [...prog.children];

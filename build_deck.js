@@ -331,6 +331,7 @@ const html = `<!DOCTYPE html>
             mask-image: radial-gradient(ellipse 80% 70% at 50% 40%, #000 30%, transparent 85%);
   }
   .slide, .progress, .hint { z-index: 1; }
+  .fit { width: 100%; }
   a { color: inherit; }
 
   /* ---------- slide frame ---------- */
@@ -586,6 +587,25 @@ const html = `<!DOCTYPE html>
 <div class="hint" id="hint"><kbd>←</kbd> <kbd>→</kbd> navigate · <kbd>F</kbd> fullscreen · <kbd>T</kbd> theme</div>
 <script>
   const slides = [...document.querySelectorAll(".slide")];
+  // wrap each slide's content so it can be scaled down if it would overflow
+  slides.forEach((sl) => {
+    const fit = document.createElement("div");
+    fit.className = "fit";
+    [...sl.children].filter((c) => !c.classList.contains("bar")).forEach((c) => fit.appendChild(c));
+    sl.appendChild(fit);
+  });
+  const fitAll = () =>
+    slides.forEach((sl) => {
+      const fit = sl.querySelector(".fit");
+      fit.style.zoom = 1;
+      const cs = getComputedStyle(sl);
+      const avail = sl.clientHeight - parseFloat(cs.paddingTop) - parseFloat(cs.paddingBottom);
+      const h = fit.scrollHeight;
+      if (h > avail) fit.style.zoom = Math.max(avail / h, 0.6).toFixed(3);
+    });
+  fitAll();
+  document.fonts?.ready.then(fitAll);
+  addEventListener("resize", fitAll);
   const prog = document.getElementById("progress");
   prog.innerHTML = slides.map(() => "<i></i>").join("");
   const dots = [...prog.children];
