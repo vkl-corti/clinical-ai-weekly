@@ -184,6 +184,11 @@
     font-size: clamp(10px, .75vw, 12.5px); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
   .extras span::before { content: "+ "; color: var(--accent-ink); }
 
+  .dek {
+    max-width: 68ch; margin: -.6vh 0 2.6vh; font-weight: 300; color: var(--text);
+    font-size: clamp(15px, 1.22vw, 21px); line-height: 1.5; text-wrap: pretty;
+  }
+
   /* ---------- clinical lens ---------- */
   .lens {
     display: flex; flex-wrap: wrap; gap: 1.2vh 3vw; margin-bottom: 3.2vh;
@@ -337,7 +342,7 @@
             <span class="chip frontier">Frontier</span>
           </li>
     </ol>
-    <div class="extras"><span>In brief · 3</span><span>Weak signals · 2</span><span>Decoder · 9 terms</span></div>
+    <div class="extras"><span>In brief · 3</span><span>Weak signals · 2</span><span>Decoder · 12 terms</span></div>
   </section>
   
     <section class="slide story">
@@ -373,11 +378,12 @@
           
           <div class="decoder">
             <div class="label">Decoder</div>
-            <dl><dt>Image-based risk model</dt><dd>AI that reads a normal-looking image for subtle patterns linked to future disease, not for cancer present today. The output is a risk estimate, like a Tyrer-Cuzick score, not a finding.</dd><dt>De Novo authorization</dt><dd>FDA route for a new kind of device with nothing equivalent on the market. Requires more evidence than a 510(k), which only needs equivalence to an existing device.</dd></dl>
+            <dl><dt>Tyrer-Cuzick</dt><dd>The standard breast cancer risk calculator (also called IBIS), filled in from a questionnaire: age, family history, reproductive and hormonal history, and breast density. In the US, a lifetime risk of 20% or more usually qualifies a woman for annual screening MRI.</dd><dt>Image-based risk model</dt><dd>AI that reads a normal-looking image for subtle patterns linked to future disease, not for cancer present today. The output is a risk estimate, like a Tyrer-Cuzick score, not a finding.</dd><dt>De Novo authorization</dt><dd>FDA route for a new kind of device with nothing equivalent on the market. Requires more evidence than a 510(k), which only needs equivalence to an existing device.</dd></dl>
           </div>
         </aside>
         <div class="body">
           <h2>FDA clears AI that predicts 5-year breast cancer risk from mammograms</h2>
+          <p class="dek">DeepHealth, the AI subsidiary of US outpatient-imaging chain RadNet, makes Mammo Risk: software that reads a woman&#39;s routine 3D mammogram and estimates her chance of developing breast cancer over the next 3–5 years.</p>
           <div class="lens">
             <div class="lens-item">
               <span class="k">Evidence</span>
@@ -385,7 +391,7 @@
             </div>
             <div class="lens-item"><span class="k">Where in care</span><span class="v">Breast screening · radiology</span></div>
             <div class="lens-item"><span class="k">At the bedside</span><span class="v">Now (US)</span></div></div>
-          <ul class="bullets"><li>DeepHealth&#39;s Mammo Risk (510(k) K262709) estimates 3-, 4- and 5-year breast cancer risk from an existing 3D screening mammogram, with no questionnaire</li><li>Validated on 65,000+ screening mammograms from 10 US sites, with consistent performance reported in Black women and dense breasts; no accuracy numbers released</li><li>Not a cancer detector, no outcome data yet, and not the first: Clairity Breast got FDA De Novo for 5-year risk from 2D mammograms in May 2025</li></ul>
+          <ul class="bullets"><li>Works on images already taken, so no extra scan or questionnaire is needed; the output is a risk score, not a finding</li><li>Validated on 65,000+ screening mammograms from 10 US sites, with consistent performance reported in Black women and dense breasts; no accuracy numbers released</li><li>Not a cancer detector, no outcome data yet, and not the first: rival Clairity&#39;s tool for standard 2D mammograms won FDA De Novo authorization in May 2025</li></ul>
           <div class="why"><div class="why-label">Why it matters for clinicians</div><p>Image-based risk could replace questionnaire models like Tyrer-Cuzick when deciding who needs supplemental MRI or shorter screening intervals.</p><div class="q"><span class="why-label">Discuss</span><p>If AI flagged high 5-year risk on a normal mammogram, what would you do differently, and what evidence would you want first?</p></div></div>
         </div>
       </div>
@@ -428,6 +434,7 @@
         </aside>
         <div class="body">
           <h2>AI-designed drugs are genuinely outperforming in Phase II</h2>
+          <p class="dek">Consulting firm Oliver Wyman compared drug candidates from &#39;AI-native&#39; biotechs, companies built around machine-learning drug design, with the rest of the industry and found more of them pass mid-stage trials.</p>
           <div class="lens">
             <div class="lens-item">
               <span class="k">Evidence</span>
@@ -478,6 +485,7 @@
         </aside>
         <div class="body">
           <h2>GPT-6.2 Astra ships to harsh reviews — but tops the med-chemistry benchmark</h2>
+          <p class="dek">OpenAI, the maker of ChatGPT, released its newest model, GPT-6.2 Astra. Testers panned it for everyday use, but it topped MedChemBench, a test of medicinal-chemistry knowledge; Google&#39;s rival model Gemini launched the next day.</p>
           <div class="lens">
             <div class="lens-item">
               <span class="k">Evidence</span>
@@ -595,7 +603,7 @@
       </footer>
       <div class="eyebrow">Decoder</div>
       <h2 class="section-h">This week's terms, <em>in plain language</em></h2>
-      <dl class="gloss dense"><div><dt>Image-based risk model</dt><dd>AI that reads a normal-looking image for subtle patterns linked to future disease, not for cancer present today. The output is a risk estimate, like a Tyrer-Cuzick score, not a finding.</dd></div><div><dt>De Novo authorization</dt><dd>FDA route for a new kind of device with nothing equivalent on the market. Requires more evidence than a 510(k), which only needs equivalence to an existing device.</dd></div><div><dt>AI-designed drug</dt><dd>An ordinary medicine (pill or biologic) where machine-learning models helped choose the target or design the molecule. It passes the same trials and approval as any drug: &#39;AI&#39; describes how it was found, not how it works.</dd></div><div><dt>Phase II trial</dt><dd>The first trial testing whether a drug actually works in patients with the condition (typically ~100–300), after Phase I safety testing. Historically the stage where most candidates fail.</dd></div><div><dt>Benchmark</dt><dd>A fixed test set used to score AI models, like a board exam. A high score shows the model answers those questions well, not that it performs safely in real practice.</dd></div><div><dt>Tokens &amp; context window</dt><dd>A token is ~¾ of a word; models are priced per million tokens. The context window is how much the model can read at once: 1M tokens ≈ 750,000 words, enough for many complete patient records.</dd></div><div><dt>510(k) clearance</dt><dd>The most common FDA route for devices: the maker shows the product is &#39;substantially equivalent&#39; to one already on the market. Usually requires less clinical evidence than full approval (PMA).</dd></div><div><dt>Triage AI</dt><dd>Software that flags and reprioritises cases (e.g. a suspected bleed on CT) so a clinician sees them sooner. The clinician still reads the case and makes the diagnosis.</dd></div><div><dt>IPO</dt><dd>Initial public offering: a private company sells shares on a stock exchange for the first time. It raises cash and requires public, audited reporting, so outsiders learn far more about how the company works and earns money.</dd></div>
+      <dl class="gloss dense"><div><dt>Tyrer-Cuzick</dt><dd>The standard breast cancer risk calculator (also called IBIS), filled in from a questionnaire: age, family history, reproductive and hormonal history, and breast density. In the US, a lifetime risk of 20% or more usually qualifies a woman for annual screening MRI.</dd></div><div><dt>Image-based risk model</dt><dd>AI that reads a normal-looking image for subtle patterns linked to future disease, not for cancer present today. The output is a risk estimate, like a Tyrer-Cuzick score, not a finding.</dd></div><div><dt>De Novo authorization</dt><dd>FDA route for a new kind of device with nothing equivalent on the market. Requires more evidence than a 510(k), which only needs equivalence to an existing device.</dd></div><div><dt>AI-designed drug</dt><dd>An ordinary medicine (pill or biologic) where machine-learning models helped choose the target or design the molecule. It passes the same trials and approval as any drug: &#39;AI&#39; describes how it was found, not how it works.</dd></div><div><dt>Phase II trial</dt><dd>The first trial testing whether a drug actually works in patients with the condition (typically ~100–300), after Phase I safety testing. Historically the stage where most candidates fail.</dd></div><div><dt>Benchmark</dt><dd>A fixed test set used to score AI models, like a board exam. A high score shows the model answers those questions well, not that it performs safely in real practice.</dd></div><div><dt>Tokens &amp; context window</dt><dd>A token is ~¾ of a word; models are priced per million tokens. The context window is how much the model can read at once: 1M tokens ≈ 750,000 words, enough for many complete patient records.</dd></div><div><dt>510(k) clearance</dt><dd>The most common FDA route for devices: the maker shows the product is &#39;substantially equivalent&#39; to one already on the market. Usually requires less clinical evidence than full approval (PMA).</dd></div><div><dt>Triage AI</dt><dd>Software that flags and reprioritises cases (e.g. a suspected bleed on CT) so a clinician sees them sooner. The clinician still reads the case and makes the diagnosis.</dd></div><div><dt>IPO</dt><dd>Initial public offering: a private company sells shares on a stock exchange for the first time. It raises cash and requires public, audited reporting, so outsiders learn far more about how the company works and earns money.</dd></div><div><dt>LLM (large language model)</dt><dd>The type of AI behind ChatGPT and Claude: trained on huge amounts of text to read and write language. Most new clinical AI tools, such as scribes and chatbots, are LLM-based.</dd></div><div><dt>TRIPOD</dt><dd>The standard reporting checklist for studies of clinical prediction models, the equivalent of CONSORT for trials. TRIPOD-Code would add rules for sharing the analysis code.</dd></div>
       </dl>
     </section>
   <section class="slide title outro">

@@ -46,6 +46,39 @@ for (const t of [...stories.flatMap((s) => s.terms || []), ...(data.glossary || 
   glossary.push(t);
 }
 
+// ---- jargon check ----------------------------------------------------------
+// Flags acronyms and named models/scores (e.g. "Tyrer-Cuzick", "510(k)") that appear in
+// slide text without a Decoder entry. Warnings only; fix them in stories.json.
+const COMMON = new Set(
+  ("AI ML US USA UK EU FDA NIH CDC WHO MRI CT PET ECG EKG ED ICU OR GP RCT EHR EMR CE " +
+   "NHS DNA RNA BMI HIV COVID ER H1 H2 Q1 Q2 Q3 Q4 II III IV I V AI-native").split(" ")
+);
+const termCovers = (terms, w) =>
+  terms.some((t) => {
+    const k = String(t.term || "").toLowerCase(), x = w.toLowerCase();
+    return k.includes(x) || k.includes(x.replace(/s$/, ""));
+  });
+const jargonIn = (text) => {
+  const found = new Set();
+  const re = /\b(?:[A-Z][A-Za-z]*[A-Z0-9][A-Za-z0-9]*(?:\([a-z]\))?|\d{3}\([a-z]\)|[A-Z][a-z]+-[A-Z][a-z]+)\b/g;
+  for (const m of String(text).matchAll(re)) if (!COMMON.has(m[0])) found.add(m[0]);
+  return [...found];
+};
+const warnings = [];
+const KNOWN_NAMES = new Set((data.knownNames || []).map((x) => x.toLowerCase()));
+const check = (where, text, terms) => {
+  for (const w of jargonIn(text))
+    if (!termCovers(terms, w) && !KNOWN_NAMES.has(w.toLowerCase())) warnings.push(`${where}: "${w}"`);
+};
+stories.forEach((s, i) => {
+  if (!s.dek) warnings.push(`story ${i + 1}: missing "dek" (plain-language intro: who did what, what the product is)`);
+  const introduced = jargonIn(s.dek || "").map((w) => ({ term: w }));
+  const text = [s.title, ...(s.bullets || []), s.why, s.question].join(" ");
+  check(`story ${i + 1}`, text, [...(s.terms || []), ...introduced]); // must be explained on the same slide
+});
+briefs.forEach((b, i) => check(`brief ${i + 1}`, [b.title, b.note].join(" "), glossary));
+signals.forEach((g, i) => check(`signal ${i + 1}`, [g.title, g.note, g.later].join(" "), glossary));
+
 const esc = (s) =>
   String(s ?? "").replace(/[&<>"']/g, (c) =>
     ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c])
@@ -179,6 +212,7 @@ const storySlides = stories.map((s, i) => {
         </aside>
         <div class="body">
           <h2>${esc(s.title)}</h2>
+          ${s.dek ? `<p class="dek">${esc(s.dek)}</p>` : ""}
           ${lens(s)}
           <ul class="bullets">${bullets}</ul>
           ${
@@ -448,6 +482,11 @@ const html = `<!DOCTYPE html>
     font-size: clamp(10px, .75vw, 12.5px); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
   .extras span::before { content: "+ "; color: var(--accent-ink); }
 
+  .dek {
+    max-width: 68ch; margin: -.6vh 0 2.6vh; font-weight: 300; color: var(--text);
+    font-size: clamp(15px, 1.22vw, 21px); line-height: 1.5; text-wrap: pretty;
+  }
+
   /* ---------- clinical lens ---------- */
   .lens {
     display: flex; flex-wrap: wrap; gap: 1.2vh 3vw; margin-bottom: 3.2vh;
@@ -656,3 +695,11 @@ const html = `<!DOCTYPE html>
 fs.mkdirSync(path.dirname(outPath), { recursive: true });
 fs.writeFileSync(outPath, html);
 console.log(`Wrote ${outPath} (${stories.length} stories, week ${weekNo} of ${year})`);
+if (warnings.length) {
+  console.warn(
+    `\nJARGON CHECK: ${warnings.length} term(s) without a Decoder entry. For each, either add it to ` +
+      `that story's "terms" (or "glossary" for briefs/signals), rewrite it in plain language, or, if it ` +
+      `is just a company/product name explained in context, add it to "knownNames":`
+  );
+  for (const w of warnings) console.warn("  - " + w);
+}

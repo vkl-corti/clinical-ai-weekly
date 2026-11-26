@@ -15,13 +15,17 @@
       "setting": "Breast screening · radiology",
       "horizon": "Now (US)",
       "bullets": [
-        "DeepHealth's Mammo Risk (510(k) K262709) estimates 3-, 4- and 5-year breast cancer risk from an existing 3D screening mammogram, with no questionnaire",
+        "Works on images already taken, so no extra scan or questionnaire is needed; the output is a risk score, not a finding",
         "Validated on 65,000+ screening mammograms from 10 US sites, with consistent performance reported in Black women and dense breasts; no accuracy numbers released",
-        "Not a cancer detector, no outcome data yet, and not the first: Clairity Breast got FDA De Novo for 5-year risk from 2D mammograms in May 2025"
+        "Not a cancer detector, no outcome data yet, and not the first: rival Clairity's tool for standard 2D mammograms won FDA De Novo authorization in May 2025"
       ],
       "why": "Image-based risk could replace questionnaire models like Tyrer-Cuzick when deciding who needs supplemental MRI or shorter screening intervals.",
       "question": "If AI flagged high 5-year risk on a normal mammogram, what would you do differently, and what evidence would you want first?",
       "terms": [
+        {
+          "term": "Tyrer-Cuzick",
+          "def": "The standard breast cancer risk calculator (also called IBIS), filled in from a questionnaire: age, family history, reproductive and hormonal history, and breast density. In the US, a lifetime risk of 20% or more usually qualifies a woman for annual screening MRI."
+        },
         {
           "term": "Image-based risk model",
           "def": "AI that reads a normal-looking image for subtle patterns linked to future disease, not for cancer present today. The output is a risk estimate, like a Tyrer-Cuzick score, not a finding."
@@ -30,7 +34,8 @@
           "term": "De Novo authorization",
           "def": "FDA route for a new kind of device with nothing equivalent on the market. Requires more evidence than a 510(k), which only needs equivalence to an existing device."
         }
-      ]
+      ],
+      "dek": "DeepHealth, the AI subsidiary of US outpatient-imaging chain RadNet, makes Mammo Risk: software that reads a woman's routine 3D mammogram and estimates her chance of developing breast cancer over the next 3–5 years."
     },
     {
       "title": "AI-designed drugs are genuinely outperforming in Phase II",
@@ -61,7 +66,8 @@
           "def": "The first trial testing whether a drug actually works in patients with the condition (typically ~100–300), after Phase I safety testing. Historically the stage where most candidates fail."
         }
       ],
-      "question": "Would knowing a drug was AI-designed change how you read its trial data?"
+      "question": "Would knowing a drug was AI-designed change how you read its trial data?",
+      "dek": "Consulting firm Oliver Wyman compared drug candidates from 'AI-native' biotechs, companies built around machine-learning drug design, with the rest of the industry and found more of them pass mid-stage trials."
     },
     {
       "title": "GPT-6.2 Astra ships to harsh reviews — but tops the med-chemistry benchmark",
@@ -92,7 +98,8 @@
           "def": "A token is ~¾ of a word; models are priced per million tokens. The context window is how much the model can read at once: 1M tokens ≈ 750,000 words, enough for many complete patient records."
         }
       ],
-      "question": "What would convince you an AI model is clinically competent: a benchmark score, or something else?"
+      "question": "What would convince you an AI model is clinically competent: a benchmark score, or something else?",
+      "dek": "OpenAI, the maker of ChatGPT, released its newest model, GPT-6.2 Astra. Testers panned it for everyday use, but it topped MedChemBench, a test of medicinal-chemistry knowledge; Google's rival model Gemini launched the next day."
     }
   ],
   "briefs": [
@@ -151,6 +158,20 @@
     {
       "term": "IPO",
       "def": "Initial public offering: a private company sells shares on a stock exchange for the first time. It raises cash and requires public, audited reporting, so outsiders learn far more about how the company works and earns money."
+    },
+    {
+      "term": "LLM (large language model)",
+      "def": "The type of AI behind ChatGPT and Claude: trained on huge amounts of text to read and write language. Most new clinical AI tools, such as scribes and chatbots, are LLM-based."
+    },
+    {
+      "term": "TRIPOD",
+      "def": "The standard reporting checklist for studies of clinical prediction models, the equivalent of CONSORT for trials. TRIPOD-Code would add rules for sharing the analysis code."
     }
+  ],
+  "knownNames": [
+    "MIT",
+    "Dana-Farber",
+    "Omni-Triage",
+    "MedChemBench"
   ]
 }
