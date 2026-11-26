@@ -30,7 +30,6 @@ This also rebuilds `index.html` and runs a jargon check that flags unexplained t
 - `build_deck.js`: renders a deck plus the archive index (no dependencies, plain Node)
 - `stories.json`: this week's content
 - `covered.json`: past stories, to avoid repeats
-- `assets/`: Corti logo and Booton font (embedded into each deck at build time)
 
 ---
 by V. Klungtvedt

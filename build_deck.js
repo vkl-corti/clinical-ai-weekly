@@ -6,15 +6,10 @@ const fs = require("fs");
 const path = require("path");
 
 const AUTHOR = "V. Klungtvedt";
-const ASSETS = path.join(__dirname, "assets");
-const FONT_B64 = fs.readFileSync(path.join(ASSETS, "BootonUprightVF.woff2")).toString("base64");
-const LOGO = fs
-  .readFileSync(path.join(ASSETS, "corti-logo-white.svg"), "utf8")
-  .replace(/<\?xml[^>]*>/, "")
-  .replace(/<g clip-path="[^"]*">/, "<g>")
-  .replace(/<defs>[\s\S]*?<\/defs>/, "")
-  .replace(/fill="white"/g, 'fill="currentColor"')
-  .replace(/<svg /, '<svg class="logo" aria-label="Corti" ');
+const WORDMARK = `<span class="mark"></span><span class="wm">Clinical AI <i>Weekly</i></span>`;
+const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap" rel="stylesheet">`;
 
 const [, , storiesPath, outPath] = process.argv;
 if (!storiesPath || !outPath) {
@@ -134,7 +129,7 @@ const EVIDENCE = [
 // ---- slides ---------------------------------------------------------------
 const chrome = (n) => `
       <header class="bar">
-        <div class="brand">${LOGO}<span class="sep"></span>Clinical AI Weekly</div>
+        <div class="brand">${WORDMARK}</div>
         <div class="issue">Week ${weekNo} · ${year}</div>
       </header>
       <footer class="bar bottom">
@@ -305,50 +300,44 @@ const html = `<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="author" content="${esc(AUTHOR)}">
 <title>Clinical AI Weekly · Week ${weekNo} · ${esc(range)}</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+${FONTS}
 <style>
-  @font-face {
-    font-family: Booton; font-weight: 100 900; font-display: swap;
-    src: url(data:font/woff2;base64,${FONT_B64}) format("woff2");
-  }
   :root {
-    /* Corti design language (corti.ai) */
-    --bg: #08090a;
-    --bg-2: #141414;
-    --line: #292b2e;
-    --line-2: #3b3e43;
-    --grid: rgba(255,255,255,.03);
-    --text: #fafafa;
-    --text-2: #c1c1c1;
-    --muted: #868686;
-    --accent: #b8f818;        /* Corti lime */
-    --accent-ink: #b8f818;    /* lime used as text */
-    --on-accent: #08090a;
-    --pink: #fd3db5;
-    --glow: rgba(184,248,24,.07);
-    --glow-2: rgba(253,61,181,.05);
-    --c-regulation: #b8f818; --c-product: #fafafa; --c-research: #fd3db5;
-    --c-frontier: #b8f818; --c-policy: #c1c1c1;
-    --sans: Booton, "Helvetica Neue", Arial, sans-serif;
-    --display: Booton, "Helvetica Neue", Arial, sans-serif;
-    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    /* Clinical editorial: paper, ink and a deep red accent */
+    --bg: #f7f4ee;
+    --bg-2: #fffdf9;
+    --line: #e6e0d4;
+    --line-2: #d3cbbb;
+    --grid: transparent;
+    --text: #1a1d24;
+    --text-2: #3e434d;
+    --muted: #8b8579;
+    --accent: #b4322a;
+    --accent-ink: #b4322a;
+    --on-accent: #fffdf9;
+    --glow: transparent;
+    --glow-2: transparent;
+    --shadow: 0 1px 2px rgba(26,29,36,.04), 0 8px 24px -12px rgba(26,29,36,.12);
+    --c-regulation: #b4322a; --c-product: #1f4e8c; --c-research: #7a3b69;
+    --c-frontier: #2f6f66; --c-policy: #6b675f;
+    --sans: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
+    --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --mono: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
     --px: clamp(28px, 6.5vw, 120px);
   }
-  :root[data-theme="light"] {
-    --bg: #fafafa; --bg-2: #ffffff;
-    --line: #e4e4e4; --line-2: #cfcfcf; --grid: rgba(8,9,10,.035);
-    --text: #08090a; --text-2: #3d3d3d; --muted: #868686;
-    --accent: #b8f818; --accent-ink: #4d7c0f; --on-accent: #08090a;
-    --glow: rgba(184,248,24,.18); --glow-2: rgba(253,61,181,.06);
-    --c-regulation: #4d7c0f; --c-product: #08090a; --c-research: #d61f93;
-    --c-frontier: #4d7c0f; --c-policy: #5a5a5a;
+  :root[data-theme="dark"] {
+    --bg: #14161a; --bg-2: #1c1f25;
+    --line: #2b2f36; --line-2: #3b404a;
+    --text: #f1ede4; --text-2: #c9c4b9; --muted: #8d887e;
+    --accent: #e0705f; --accent-ink: #e8836f; --on-accent: #14161a;
+    --shadow: none;
+    --c-regulation: #e8836f; --c-product: #8fb4e8; --c-research: #d39cc6;
+    --c-frontier: #7fc4b8; --c-policy: #b0aa9e;
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
   body {
-    background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 350;
+    background: var(--bg); color: var(--text); font-family: var(--sans); font-weight: 400;
     -webkit-font-smoothing: antialiased; overflow: hidden;
   }
   body::before {
@@ -384,13 +373,15 @@ const html = `<!DOCTYPE html>
   .bar {
     position: absolute; left: var(--px); right: var(--px); top: 4.5vh;
     display: flex; justify-content: space-between; align-items: center;
-    font-family: var(--mono); font-size: clamp(10px, .78vw, 13px); color: var(--muted);
-    letter-spacing: .04em; text-transform: uppercase;
+    font-family: var(--mono); font-size: clamp(10px, .74vw, 12px); color: var(--muted);
+    letter-spacing: .1em; text-transform: uppercase; font-weight: 500;
   }
   .bar.bottom { top: auto; bottom: 4.5vh; }
-  .brand { display: flex; align-items: center; gap: 1em; color: var(--text-2); }
-  .logo { height: 1.9em; width: auto; color: var(--text); display: block; }
-  .sep { width: 1px; height: 1.3em; background: var(--line-2); }
+  .brand { display: flex; align-items: center; gap: .7em; color: var(--text-2); }
+  .mark { width: .55em; height: .55em; border-radius: 50%; background: var(--accent); }
+  .wm { font-family: var(--display); font-size: 1.55em; text-transform: none; letter-spacing: -.01em;
+    color: var(--text); font-weight: 500; }
+  .wm i { font-weight: 400; color: var(--text-2); }
   .issue, .count { font-variant-numeric: tabular-nums; }
   .count b { color: var(--text); font-weight: 400; }
   .byline { text-transform: none; letter-spacing: .02em; opacity: .7; }
@@ -417,10 +408,10 @@ const html = `<!DOCTYPE html>
     text-transform: uppercase; color: var(--accent-ink); margin-bottom: 3vh;
   }
   .title h1 {
-    font-family: var(--display); font-weight: 250;
-    font-size: clamp(44px, 6.6vw, 120px); line-height: 1.02; letter-spacing: -.045em;
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(48px, 7vw, 128px); line-height: 1; letter-spacing: -.025em;
   }
-  .title h1 em { font-style: normal; color: var(--accent-ink); }
+  .title h1 em { font-style: italic; color: var(--accent-ink); }
   .range { margin-top: 3vh; color: var(--muted); font-weight: 300; font-size: clamp(15px, 1.35vw, 22px); }
   .agenda { list-style: none; margin-top: 6vh; max-width: 1100px; border-top: 1px solid var(--line); }
   .agenda li {
@@ -439,8 +430,8 @@ const html = `<!DOCTYPE html>
   .meta { display: flex; flex-direction: column; align-items: flex-start; gap: 1.8vh; padding-top: .6vh; }
   .meta-row { display: flex; align-items: center; gap: 1.2vw; flex-wrap: wrap; }
   .num {
-    font-family: var(--display); font-weight: 150; line-height: .8;
-    font-size: clamp(40px, 4.2vw, 80px); letter-spacing: -.05em;
+    font-family: var(--display); font-style: italic; font-weight: 300; line-height: .8;
+    font-size: clamp(44px, 4.6vw, 88px); letter-spacing: -.02em;
     color: var(--accent-ink);
   }
   .src { border-left: 1px solid var(--line-2); padding-left: 1em; font-size: clamp(12px, .95vw, 15px); }
@@ -448,14 +439,14 @@ const html = `<!DOCTYPE html>
   .src-name { color: var(--text-2); font-weight: 400; }
   .src-date { color: var(--muted); margin-top: .3em; font-variant-numeric: tabular-nums; }
   .story h2 {
-    font-family: var(--display); font-weight: 300;
-    font-size: clamp(26px, 2.9vw, 52px); line-height: 1.1; letter-spacing: -.035em;
+    font-family: var(--display); font-weight: 400;
+    font-size: clamp(28px, 3.1vw, 56px); line-height: 1.06; letter-spacing: -.015em;
     max-width: 28ch; margin-bottom: 2.6vh; text-wrap: balance;
   }
   .bullets { list-style: none; max-width: 100%; counter-reset: b; }
   .bullets li {
     position: relative; padding-left: 1.6em; margin-bottom: 1.3vh;
-    font-size: clamp(14px, 1.1vw, 19px); line-height: 1.55; color: var(--text-2); font-weight: 300;
+    font-size: clamp(14px, 1.1vw, 19px); line-height: 1.55; color: var(--text-2); font-weight: 400;
     text-wrap: pretty;
   }
   .bullets li::before {
@@ -465,14 +456,14 @@ const html = `<!DOCTYPE html>
   .why {
     margin-top: 2.4vh; max-width: 100%; padding: 2.4vh 1.6vw;
     border-radius: 6px; border: 1px solid var(--line); border-left: 1px solid var(--accent);
-    background: linear-gradient(180deg, color-mix(in srgb, var(--bg-2) 80%, transparent), transparent);
+    background: var(--bg-2); box-shadow: var(--shadow);
     backdrop-filter: blur(6px);
   }
   .why-label {
     font-family: var(--mono); font-size: clamp(10px, .78vw, 13px); font-weight: 400; letter-spacing: .16em;
     text-transform: uppercase; color: var(--accent-ink); margin-bottom: 1vh;
   }
-  .why p { font-weight: 300; font-size: clamp(17px, 1.45vw, 25px); line-height: 1.4; letter-spacing: -.01em; line-height: 1.5; color: var(--text); }
+  .why p { font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(19px, 1.6vw, 28px); line-height: 1.4; letter-spacing: -.01em; line-height: 1.5; color: var(--text); }
   .read {
     display: inline-flex; gap: .5em; align-items: center;
     font-size: clamp(12px, .9vw, 14px); font-weight: 350; text-decoration: none;
@@ -486,7 +477,7 @@ const html = `<!DOCTYPE html>
   .extras span::before { content: "+ "; color: var(--accent-ink); }
 
   .dek {
-    max-width: 100%; margin: -.6vh 0 2.6vh; font-weight: 300; color: var(--text);
+    max-width: 100%; margin: -.6vh 0 2.6vh; font-weight: 400; color: var(--text-2); color: var(--text);
     font-size: clamp(15px, 1.22vw, 21px); line-height: 1.5; text-wrap: pretty;
   }
 
@@ -506,25 +497,25 @@ const html = `<!DOCTYPE html>
   .meter i.on { background: var(--accent); }
   .q { margin-top: 1.6vh; padding-top: 1.6vh; border-top: 1px solid var(--line); }
   .q .why-label { display: block; color: var(--muted); }
-  .why .q p { font-size: clamp(14px, 1.08vw, 18px); line-height: 1.5; color: var(--text-2); }
+  .why .q p { font-family: var(--sans); font-style: normal; font-size: clamp(14px, 1.08vw, 18px); line-height: 1.5; color: var(--text-2); }
 
   /* ---------- decoder (story sidebar) ---------- */
   .decoder {
     margin-top: 1vh; padding: 2.2vh 1.3vw .6vh; width: 100%;
-    border: 1px solid var(--line); border-top: 1px solid var(--accent); border-radius: 6px;
-    background: linear-gradient(180deg, color-mix(in srgb, var(--bg-2) 80%, transparent), transparent);
+    border: 1px solid var(--line); border-top: 2px solid var(--accent); border-radius: 4px;
+    background: var(--bg-2); box-shadow: var(--shadow);
   }
   .decoder .label, .gloss-label { font-family: var(--mono); font-size: clamp(9px, .64vw, 11px); letter-spacing: .16em;
     text-transform: uppercase; color: var(--accent-ink); margin-bottom: 1.6vh; }
-  .decoder dt { font-size: clamp(14px, 1.12vw, 19px); color: var(--text); font-weight: 400; }
+  .decoder dt { font-family: var(--display); font-size: clamp(16px, 1.25vw, 21px); color: var(--text); font-weight: 500; }
   .decoder dd { font-size: clamp(13px, .98vw, 16.5px); color: var(--text-2); line-height: 1.5; margin: .35em 0 1.8vh; font-weight: 300; }
 
   /* ---------- section slides ---------- */
   .section-h {
-    font-family: var(--display); font-weight: 250; font-size: clamp(32px, 3.8vw, 68px);
-    line-height: 1.05; letter-spacing: -.04em; margin-bottom: 5vh;
+    font-family: var(--display); font-weight: 300; font-size: clamp(36px, 4.2vw, 76px);
+    line-height: 1.02; letter-spacing: -.02em; margin-bottom: 5vh;
   }
-  .section-h em { font-style: normal; color: var(--accent-ink); }
+  .section-h em { font-style: italic; color: var(--accent-ink); }
   .brief-list { list-style: none; border-top: 1px solid var(--line); max-width: 1300px; }
   .brief-list li {
     display: grid; grid-template-columns: 9.5em 1fr auto; gap: 2vw; align-items: baseline;
@@ -539,10 +530,10 @@ const html = `<!DOCTYPE html>
   .card {
     display: flex; flex-direction: column; gap: 1.6vh; padding: 3vh 1.8vw;
     border: 1px solid var(--line); border-radius: 6px;
-    background: linear-gradient(180deg, color-mix(in srgb, var(--bg-2) 80%, transparent), transparent);
+    background: var(--bg-2); box-shadow: var(--shadow);
   }
-  .card h3 { font-weight: 350; font-size: clamp(17px, 1.45vw, 24px); line-height: 1.25; letter-spacing: -.02em; }
-  .card p { color: var(--text-2); font-weight: 300; font-size: clamp(13px, .98vw, 16px); line-height: 1.55; }
+  .card h3 { font-family: var(--display); font-weight: 400; font-size: clamp(17px, 1.45vw, 24px); line-height: 1.25; letter-spacing: -.02em; }
+  .card p { color: var(--text-2); font-weight: 400; font-size: clamp(13px, .98vw, 16px); line-height: 1.55; }
   .card .later { padding-top: 1.4vh; border-top: 1px solid var(--line); }
   .card .later .why-label { display: block; color: var(--c-research); }
   .card-src { margin-top: auto; font-family: var(--mono); font-size: clamp(10px, .72vw, 12px);
@@ -551,8 +542,8 @@ const html = `<!DOCTYPE html>
   .gloss { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3.4vh 3vw; max-width: 1400px; }
   .gloss.dense { grid-template-columns: repeat(4, 1fr); gap: 2.6vh 2.4vw; }
   .gloss div { border-top: 1px solid var(--line-2); padding-top: 1.6vh; }
-  .gloss dt { font-size: clamp(15px, 1.2vw, 20px); font-weight: 400; margin-bottom: .6vh; }
-  .gloss dd { color: var(--text-2); font-weight: 300; font-size: clamp(12px, .95vw, 16px); line-height: 1.55; }
+  .gloss dt { font-family: var(--display); font-size: clamp(18px, 1.4vw, 24px); font-weight: 500; margin-bottom: .6vh; }
+  .gloss dd { color: var(--text-2); font-weight: 400; font-size: clamp(12px, .95vw, 16px); line-height: 1.55; }
 
   /* ---------- outro ---------- */
   .sources { list-style: none; margin-top: 6vh; max-width: 900px; border-top: 1px solid var(--line); }
@@ -658,8 +649,7 @@ const html = `<!DOCTYPE html>
   const dots = [...prog.children];
   const root = document.documentElement;
   const saved = localStorage.getItem("caiw-theme");
-  if (saved) root.dataset.theme = saved;
-  else if (matchMedia("(prefers-color-scheme: light)").matches) root.dataset.theme = "light";
+  if (saved === "dark") root.dataset.theme = "dark";
 
   let i = Math.min(Math.max(parseInt(location.hash.slice(1), 10) - 1 || 0, 0), slides.length - 1);
   const show = () => {
@@ -675,8 +665,8 @@ const html = `<!DOCTYPE html>
     else if (e.key === "End") go(slides.length - 1);
     else if (e.key === "f") document.fullscreenElement ? document.exitFullscreen() : root.requestFullscreen?.();
     else if (e.key === "t") {
-      root.dataset.theme = root.dataset.theme === "light" ? "dark" : "light";
-      localStorage.setItem("caiw-theme", root.dataset.theme);
+      if (root.dataset.theme === "dark") delete root.dataset.theme; else root.dataset.theme = "dark";
+      localStorage.setItem("caiw-theme", root.dataset.theme || "light");
     }
   });
   document.addEventListener("click", (e) => {
@@ -731,36 +721,35 @@ console.log(`Wrote ${outPath} (${stories.length} stories, week ${weekNo} of ${ye
   const index = `<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Clinical AI Weekly · Archive</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+${FONTS}
 <style>
-  @font-face { font-family: Booton; font-weight: 100 900; src: url(data:font/woff2;base64,${FONT_B64}) format("woff2"); }
-  :root { --bg:#08090a; --line:#292b2e; --text:#fafafa; --text-2:#c1c1c1; --muted:#868686; --accent:#b8f818;
-    --mono:"IBM Plex Mono", ui-monospace, Menlo, monospace; }
+  :root { --bg:#f7f4ee; --bg-2:#fffdf9; --line:#e6e0d4; --text:#1a1d24; --text-2:#3e434d; --muted:#8b8579; --accent:#b4322a;
+    --display:"Newsreader", "Iowan Old Style", Georgia, serif; --sans:"Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; }
   * { box-sizing:border-box; margin:0; padding:0; }
-  body { background:var(--bg); color:var(--text); font-family:Booton, "Helvetica Neue", Arial, sans-serif; font-weight:300;
-    -webkit-font-smoothing:antialiased; padding:6vh clamp(24px, 8vw, 140px); min-height:100vh;
-    background-image: radial-gradient(55vw 55vh at 90% -10%, rgba(184,248,24,.07), transparent 70%); }
-  header { display:flex; justify-content:space-between; align-items:center; font-family:var(--mono); font-size:12px;
-    letter-spacing:.06em; text-transform:uppercase; color:var(--muted); }
-  .brand { display:flex; align-items:center; gap:1em; color:var(--text-2); }
-  .logo { height:22px; width:auto; color:var(--text); }
-  .sep { width:1px; height:16px; background:var(--line); }
-  .eyebrow { margin-top:14vh; font-family:var(--mono); font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
-  h1 { font-weight:250; font-size:clamp(44px, 6vw, 104px); letter-spacing:-.045em; line-height:1.02; margin:2.4vh 0 2vh; }
-  h1 em { font-style:normal; color:var(--accent); }
-  .lede { color:var(--muted); font-size:clamp(15px, 1.2vw, 19px); max-width:60ch; line-height:1.55; }
-  .list { margin-top:8vh; border-top:1px solid var(--line); }
-  .row { display:grid; grid-template-columns:7em 12em 1fr auto; gap:2vw; align-items:baseline; padding:2.2vh 0;
-    border-bottom:1px solid var(--line); text-decoration:none; color:var(--text-2); transition:background .2s, color .2s; }
-  .row:hover { color:var(--text); background:linear-gradient(90deg, rgba(184,248,24,.05), transparent 60%); }
-  .wk, .dt, .go { font-family:var(--mono); font-size:12px; letter-spacing:.06em; color:var(--muted); }
-  .wk { color:var(--text-2); }
+  body { background:var(--bg); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased;
+    padding:6vh clamp(24px, 8vw, 140px); min-height:100vh; }
+  header { display:flex; justify-content:space-between; align-items:center; font-size:12px; font-weight:500;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
+  .brand { display:flex; align-items:center; gap:.7em; }
+  .mark { width:9px; height:9px; border-radius:50%; background:var(--accent); }
+  .wm { font-family:var(--display); font-size:20px; font-weight:500; letter-spacing:-.01em; text-transform:none; color:var(--text); }
+  .wm i { font-weight:400; color:var(--text-2); }
+  .eyebrow { margin-top:14vh; font-size:12px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); }
+  h1 { font-family:var(--display); font-weight:300; font-size:clamp(48px, 6.6vw, 112px); letter-spacing:-.025em; line-height:1; margin:2.4vh 0 2.4vh; }
+  h1 em { font-style:italic; color:var(--accent); }
+  .lede { color:var(--text-2); font-family:var(--display); font-size:clamp(18px, 1.5vw, 24px); max-width:52ch; line-height:1.45; }
+  .list { margin-top:8vh; border-top:1px solid var(--text); }
+  .row { display:grid; grid-template-columns:7em 12em 1fr auto; gap:2vw; align-items:baseline; padding:2.4vh 0;
+    border-bottom:1px solid var(--line); text-decoration:none; color:var(--text-2); transition:background .2s; }
+  .row:hover { background:var(--bg-2); }
+  .wk, .dt, .go { font-size:12px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
+  .wk { color:var(--text); }
   .latest .wk, .latest .go { color:var(--accent); }
-  .hd { display:flex; flex-direction:column; gap:.4em; font-size:clamp(14px, 1.05vw, 17px); color:var(--text); }
-  footer { margin-top:10vh; font-family:var(--mono); font-size:12px; color:var(--muted); opacity:.7; }
+  .hd { display:flex; flex-direction:column; gap:.35em; font-family:var(--display); font-size:clamp(17px, 1.3vw, 21px); color:var(--text); }
+  footer { margin-top:10vh; font-size:12px; color:var(--muted); }
   @media (max-width:760px) { .row { grid-template-columns:1fr; gap:.6em; } }
 </style></head><body>
-<header><div class="brand">${LOGO}<span class="sep"></span>Clinical AI Weekly</div><div>Archive</div></header>
+<header><div class="brand">${WORDMARK}</div><div>Archive</div></header>
 <div class="eyebrow">Weekly team update</div>
 <h1>This week in<br><em>clinical</em> AI</h1>
 <p class="lede">A short weekly briefing on clinical and healthcare AI news, written for clinicians: what happened, how strong the evidence is, and what it means at the bedside.</p>
