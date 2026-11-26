@@ -7,20 +7,21 @@
 <title>Clinical AI Weekly · Week 48 · Nov 23 – 29, 2026</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..600&display=swap" rel="stylesheet">
 <style>
   :root {
     --sans: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
-    --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --display: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
     --mono: var(--sans);
     --px: clamp(28px, 6.5vw, 120px);
   }
   
-  :root { --bg: #fbfbfd; --bg-2: #ffffff; --line: #e8e8ed; --line-2: #d2d2d7; --text: #1d1d1f; --text-2: #424245; --muted: #86868b; --accent: #6e1f3f; --accent-ink: #6e1f3f; --on-accent: #ffffff; --glow: transparent; --shadow: 0 1px 2px rgba(0,0,0,.04), 0 14px 36px -18px rgba(0,0,0,.16); --c-regulation: #6e1f3f; --c-product: #0a5bd3; --c-research: #6b3fa0; --c-frontier: #1f6f5c; --c-policy: #6e6e73; }
-  :root[data-theme="alt"] { --bg: #100709; --bg-2: #1b0f15; --line: #2c1b24; --line-2: #433039; --text: #f5f5f7; --text-2: #cbc3c7; --muted: #8e8590; --accent: #c2577f; --accent-ink: #e7a3bf; --on-accent: #100709; --glow: rgba(110,31,63,.38); --shadow: none; --c-regulation: #e7a3bf; --c-product: #8ab4ff; --c-research: #c9a7ef; --c-frontier: #7fd1bd; --c-policy: #a1a1a6; }
-  .slide.title { background: radial-gradient(120% 95% at 88% -5%, #5a1636 0%, #2a0c1b 42%, #0f0508 100%); --text: #f5f5f7; --text-2: #d6cdd2; --muted: #9a8f96; --accent-ink: #eaa9c4; --line: rgba(255,255,255,.12); --line-2: rgba(255,255,255,.2); --bg-2: rgba(255,255,255,.06); --c-regulation: #eaa9c4; --c-product: #8ab4ff; --c-research: #c9a7ef; --c-frontier: #7fd1bd; --c-policy: #b0a8ad; }
+  :root { --bg: #fbfbfd; --bg-2: #ffffff; --line: #e3e8f0; --line-2: #c9d3e3; --text: #091d42; --text-2: #2b3d5e; --muted: #7d8aa3; --accent: #173c78; --accent-ink: #2a6aa3; --on-accent: #ffffff; --glow: transparent; --shadow: 0 1px 2px rgba(9,29,66,.05), 0 14px 36px -18px rgba(9,29,66,.18); --c-regulation: #173c78; --c-product: #2b8cbf; --c-research: #5b4fa8; --c-frontier: #1f7a8c; --c-policy: #7d8aa3; }
+  :root[data-theme="alt"] { --bg: #04080f; --bg-2: #060e22; --line: #0d1f45; --line-2: #173c78; --text: #eaf5fb; --text-2: #a8bcde; --muted: #8899aa; --accent: #96cfea; --accent-ink: #b8dff0; --on-accent: #04080f; --glow: rgba(23,60,120,.35); --shadow: none; --c-regulation: #96cfea; --c-product: #b8d9f0; --c-research: #c4b5fd; --c-frontier: #7fd6d0; --c-policy: #8899aa; }
+  .slide.title { background: radial-gradient(120% 95% at 88% -5%, #173c78 0%, #091d42 40%, #04080f 100%); --text: #eaf5fb; --text-2: #d0dcf0; --muted: #8899aa; --accent-ink: #96cfea; --line: rgba(184,217,240,.14); --line-2: rgba(184,217,240,.24); --bg-2: rgba(184,217,240,.06); --c-regulation: #96cfea; --c-product: #b8d9f0; --c-research: #c4b5fd; --c-frontier: #7fd6d0; --c-policy: #a8bcde; }
   .slide.title { color: var(--text); }
   .slide.title .chip { color: var(--text-2); }
+  .slide.title .mark { background: var(--accent-ink); }
   * { box-sizing: border-box; margin: 0; padding: 0; }
   html, body { height: 100%; }
   body {
@@ -67,9 +68,9 @@
   .bar.bottom { top: auto; bottom: 4.5vh; }
   .brand { display: flex; align-items: center; gap: .7em; color: var(--text-2); }
   .mark { width: .55em; height: .55em; border-radius: 50%; background: var(--accent); }
-  .wm { font-family: var(--display); font-size: 1.55em; text-transform: none; letter-spacing: -.01em;
+  .wm { font-family: var(--display); font-size: 1.25em; text-transform: none; letter-spacing: -.01em;
     color: var(--text); font-weight: 500; }
-  .wm i { font-weight: 400; color: var(--text-2); }
+  .wm i { font-style: normal; font-weight: 300; color: var(--muted); }
   .issue, .count { font-variant-numeric: tabular-nums; }
   .count b { color: var(--text); font-weight: 400; }
   .byline { text-transform: none; letter-spacing: .02em; opacity: .7; }
@@ -92,14 +93,14 @@
 
   /* ---------- title ---------- */
   .eyebrow {
-    font-family: var(--mono); font-size: clamp(10px, .75vw, 12.5px); font-weight: 400; letter-spacing: .16em;
+    font-family: var(--mono); font-size: clamp(10px, .75vw, 12.5px); font-weight: 400; letter-spacing: .28em;
     text-transform: uppercase; color: var(--accent-ink); margin-bottom: 3vh;
   }
   .title h1 {
-    font-family: var(--display); font-weight: 300;
-    font-size: clamp(48px, 7vw, 128px); line-height: 1; letter-spacing: -.025em;
+    font-family: var(--display); font-weight: 200;
+    font-size: clamp(48px, 7vw, 128px); line-height: 1.04; letter-spacing: -.04em;
   }
-  .title h1 em { font-style: italic; color: var(--accent-ink); }
+  .title h1 em { font-style: normal; color: var(--accent-ink); }
   .range { margin-top: 3vh; color: var(--muted); font-weight: 300; font-size: clamp(15px, 1.35vw, 22px); }
   .agenda { list-style: none; margin-top: 6vh; max-width: 1100px; border-top: 1px solid var(--line); }
   .agenda li {
@@ -118,8 +119,8 @@
   .meta { display: flex; flex-direction: column; align-items: flex-start; gap: 1.8vh; padding-top: .6vh; }
   .meta-row { display: flex; align-items: center; gap: 1.2vw; flex-wrap: wrap; }
   .num {
-    font-family: var(--display); font-style: italic; font-weight: 300; line-height: .8;
-    font-size: clamp(44px, 4.6vw, 88px); letter-spacing: -.02em;
+    font-family: var(--display); font-weight: 100; line-height: .8;
+    font-size: clamp(44px, 4.6vw, 88px); letter-spacing: -.04em;
     color: var(--accent-ink);
   }
   .src { border-left: 1px solid var(--line-2); padding-left: 1em; font-size: clamp(12px, .95vw, 15px); }
@@ -127,8 +128,8 @@
   .src-name { color: var(--text-2); font-weight: 400; }
   .src-date { color: var(--muted); margin-top: .3em; font-variant-numeric: tabular-nums; }
   .story h2 {
-    font-family: var(--display); font-weight: 400;
-    font-size: clamp(28px, 3.1vw, 56px); line-height: 1.06; letter-spacing: -.015em;
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(28px, 3vw, 54px); line-height: 1.1; letter-spacing: -.03em;
     max-width: 28ch; margin-bottom: 2.6vh; text-wrap: balance;
   }
   .bullets { list-style: none; max-width: 100%; counter-reset: b; }
@@ -151,7 +152,7 @@
     font-family: var(--mono); font-size: clamp(10px, .78vw, 13px); font-weight: 400; letter-spacing: .16em;
     text-transform: uppercase; color: var(--accent-ink); margin-bottom: 1vh;
   }
-  .why p { font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(19px, 1.6vw, 28px); line-height: 1.4; letter-spacing: -.01em; line-height: 1.5; color: var(--text); }
+  .why p { font-family: var(--display); font-weight: 300; letter-spacing: -.015em; font-size: clamp(19px, 1.6vw, 28px); line-height: 1.4; letter-spacing: -.01em; line-height: 1.5; color: var(--text); }
   .read {
     display: inline-flex; gap: .5em; align-items: center;
     font-size: clamp(12px, .9vw, 14px); font-weight: 350; text-decoration: none;
@@ -200,10 +201,10 @@
 
   /* ---------- section slides ---------- */
   .section-h {
-    font-family: var(--display); font-weight: 300; font-size: clamp(36px, 4.2vw, 76px);
-    line-height: 1.02; letter-spacing: -.02em; margin-bottom: 5vh;
+    font-family: var(--display); font-weight: 200; font-size: clamp(36px, 4.2vw, 76px);
+    line-height: 1.05; letter-spacing: -.04em; margin-bottom: 5vh;
   }
-  .section-h em { font-style: italic; color: var(--accent-ink); }
+  .section-h em { font-style: normal; color: var(--accent-ink); }
   .brief-list { list-style: none; border-top: 1px solid var(--line); max-width: 1300px; }
   .brief-list li {
     display: grid; grid-template-columns: 9.5em 1fr auto; gap: 2vw; align-items: baseline;

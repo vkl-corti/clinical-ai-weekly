@@ -11,6 +11,30 @@ const WORDMARK = `<span class="mark"></span><span class="wm">Clinical AI <i>Week
 // Each palette has a light and a dark mode; `mode` is the default, T toggles the other.
 // `hero` styles the cover and closing slides.
 const PALETTES = {
+  // Inspired by xyva.io: deep "void" navy text, cobalt lines, sky-blue accents
+  xyva: {
+    mode: "light",
+    light: {
+      bg: "#fbfbfd", "bg-2": "#ffffff", line: "#e3e8f0", "line-2": "#c9d3e3",
+      text: "#091d42", "text-2": "#2b3d5e", muted: "#7d8aa3",
+      accent: "#173c78", "accent-ink": "#2a6aa3", "on-accent": "#ffffff", glow: "transparent",
+      shadow: "0 1px 2px rgba(9,29,66,.05), 0 14px 36px -18px rgba(9,29,66,.18)",
+      "c-regulation": "#173c78", "c-product": "#2b8cbf", "c-research": "#5b4fa8", "c-frontier": "#1f7a8c", "c-policy": "#7d8aa3",
+    },
+    dark: {
+      bg: "#04080f", "bg-2": "#060e22", line: "#0d1f45", "line-2": "#173c78",
+      text: "#eaf5fb", "text-2": "#a8bcde", muted: "#8899aa",
+      accent: "#96cfea", "accent-ink": "#b8dff0", "on-accent": "#04080f", glow: "rgba(23,60,120,.35)",
+      shadow: "none",
+      "c-regulation": "#96cfea", "c-product": "#b8d9f0", "c-research": "#c4b5fd", "c-frontier": "#7fd6d0", "c-policy": "#8899aa",
+    },
+    hero: {
+      bg: "radial-gradient(120% 95% at 88% -5%, #173c78 0%, #091d42 40%, #04080f 100%)",
+      text: "#eaf5fb", "text-2": "#d0dcf0", muted: "#8899aa", "accent-ink": "#96cfea",
+      line: "rgba(184,217,240,.14)", "line-2": "rgba(184,217,240,.24)", "bg-2": "rgba(184,217,240,.06)",
+      "c-regulation": "#96cfea", "c-product": "#b8d9f0", "c-research": "#c4b5fd", "c-frontier": "#7fd6d0", "c-policy": "#a8bcde",
+    },
+  },
   bordeaux: {
     mode: "light",
     light: {
@@ -62,7 +86,7 @@ const vars = (o) => Object.entries(o).map(([k, v]) => `--${k}: ${v};`).join(" ")
 
 const FONTS = `<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..600&family=Newsreader:ital,opsz,wght@0,6..72,200..600;1,6..72,200..600&display=swap" rel="stylesheet">`;
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..600&display=swap" rel="stylesheet">`;
 
 const [, , storiesPath, outPath] = process.argv;
 if (!storiesPath || !outPath) {
@@ -82,14 +106,15 @@ if (stories.length < 1 || stories.length > 5) {
   process.exit(1);
 }
 
-const palette = PALETTES[PALETTE_NAME || data.palette || "bordeaux"] || PALETTES.bordeaux;
+const palette = PALETTES[PALETTE_NAME || data.palette || "xyva"] || PALETTES.xyva;
 const altMode = palette.mode === "light" ? "dark" : "light";
 const paletteCSS = `
   :root { ${vars(palette[palette.mode])} }
   :root[data-theme="alt"] { ${vars(palette[altMode])} }
   .slide.title { background: ${palette.hero.bg}; ${vars(Object.fromEntries(Object.entries(palette.hero).filter(([k]) => k !== "bg")))} }
   .slide.title { color: var(--text); }
-  .slide.title .chip { color: var(--text-2); }`;
+  .slide.title .chip { color: var(--text-2); }
+  .slide.title .mark { background: var(--accent-ink); }`;
 
 const briefs = (data.briefs || []).slice(0, 6);
 const signals = (data.signals || []).slice(0, 3);
@@ -366,7 +391,7 @@ ${FONTS}
 <style>
   :root {
     --sans: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
-    --display: "Newsreader", "Iowan Old Style", Georgia, serif;
+    --display: "Inter", -apple-system, "Helvetica Neue", Arial, sans-serif;
     --mono: var(--sans);
     --px: clamp(28px, 6.5vw, 120px);
   }
@@ -417,9 +442,9 @@ ${FONTS}
   .bar.bottom { top: auto; bottom: 4.5vh; }
   .brand { display: flex; align-items: center; gap: .7em; color: var(--text-2); }
   .mark { width: .55em; height: .55em; border-radius: 50%; background: var(--accent); }
-  .wm { font-family: var(--display); font-size: 1.55em; text-transform: none; letter-spacing: -.01em;
+  .wm { font-family: var(--display); font-size: 1.25em; text-transform: none; letter-spacing: -.01em;
     color: var(--text); font-weight: 500; }
-  .wm i { font-weight: 400; color: var(--text-2); }
+  .wm i { font-style: normal; font-weight: 300; color: var(--muted); }
   .issue, .count { font-variant-numeric: tabular-nums; }
   .count b { color: var(--text); font-weight: 400; }
   .byline { text-transform: none; letter-spacing: .02em; opacity: .7; }
@@ -442,14 +467,14 @@ ${FONTS}
 
   /* ---------- title ---------- */
   .eyebrow {
-    font-family: var(--mono); font-size: clamp(10px, .75vw, 12.5px); font-weight: 400; letter-spacing: .16em;
+    font-family: var(--mono); font-size: clamp(10px, .75vw, 12.5px); font-weight: 400; letter-spacing: .28em;
     text-transform: uppercase; color: var(--accent-ink); margin-bottom: 3vh;
   }
   .title h1 {
-    font-family: var(--display); font-weight: 300;
-    font-size: clamp(48px, 7vw, 128px); line-height: 1; letter-spacing: -.025em;
+    font-family: var(--display); font-weight: 200;
+    font-size: clamp(48px, 7vw, 128px); line-height: 1.04; letter-spacing: -.04em;
   }
-  .title h1 em { font-style: italic; color: var(--accent-ink); }
+  .title h1 em { font-style: normal; color: var(--accent-ink); }
   .range { margin-top: 3vh; color: var(--muted); font-weight: 300; font-size: clamp(15px, 1.35vw, 22px); }
   .agenda { list-style: none; margin-top: 6vh; max-width: 1100px; border-top: 1px solid var(--line); }
   .agenda li {
@@ -468,8 +493,8 @@ ${FONTS}
   .meta { display: flex; flex-direction: column; align-items: flex-start; gap: 1.8vh; padding-top: .6vh; }
   .meta-row { display: flex; align-items: center; gap: 1.2vw; flex-wrap: wrap; }
   .num {
-    font-family: var(--display); font-style: italic; font-weight: 300; line-height: .8;
-    font-size: clamp(44px, 4.6vw, 88px); letter-spacing: -.02em;
+    font-family: var(--display); font-weight: 100; line-height: .8;
+    font-size: clamp(44px, 4.6vw, 88px); letter-spacing: -.04em;
     color: var(--accent-ink);
   }
   .src { border-left: 1px solid var(--line-2); padding-left: 1em; font-size: clamp(12px, .95vw, 15px); }
@@ -477,8 +502,8 @@ ${FONTS}
   .src-name { color: var(--text-2); font-weight: 400; }
   .src-date { color: var(--muted); margin-top: .3em; font-variant-numeric: tabular-nums; }
   .story h2 {
-    font-family: var(--display); font-weight: 400;
-    font-size: clamp(28px, 3.1vw, 56px); line-height: 1.06; letter-spacing: -.015em;
+    font-family: var(--display); font-weight: 300;
+    font-size: clamp(28px, 3vw, 54px); line-height: 1.1; letter-spacing: -.03em;
     max-width: 28ch; margin-bottom: 2.6vh; text-wrap: balance;
   }
   .bullets { list-style: none; max-width: 100%; counter-reset: b; }
@@ -501,7 +526,7 @@ ${FONTS}
     font-family: var(--mono); font-size: clamp(10px, .78vw, 13px); font-weight: 400; letter-spacing: .16em;
     text-transform: uppercase; color: var(--accent-ink); margin-bottom: 1vh;
   }
-  .why p { font-family: var(--display); font-style: italic; font-weight: 400; font-size: clamp(19px, 1.6vw, 28px); line-height: 1.4; letter-spacing: -.01em; line-height: 1.5; color: var(--text); }
+  .why p { font-family: var(--display); font-weight: 300; letter-spacing: -.015em; font-size: clamp(19px, 1.6vw, 28px); line-height: 1.4; letter-spacing: -.01em; line-height: 1.5; color: var(--text); }
   .read {
     display: inline-flex; gap: .5em; align-items: center;
     font-size: clamp(12px, .9vw, 14px); font-weight: 350; text-decoration: none;
@@ -550,10 +575,10 @@ ${FONTS}
 
   /* ---------- section slides ---------- */
   .section-h {
-    font-family: var(--display); font-weight: 300; font-size: clamp(36px, 4.2vw, 76px);
-    line-height: 1.02; letter-spacing: -.02em; margin-bottom: 5vh;
+    font-family: var(--display); font-weight: 200; font-size: clamp(36px, 4.2vw, 76px);
+    line-height: 1.05; letter-spacing: -.04em; margin-bottom: 5vh;
   }
-  .section-h em { font-style: italic; color: var(--accent-ink); }
+  .section-h em { font-style: normal; color: var(--accent-ink); }
   .brief-list { list-style: none; border-top: 1px solid var(--line); max-width: 1300px; }
   .brief-list li {
     display: grid; grid-template-columns: 9.5em 1fr auto; gap: 2vw; align-items: baseline;
@@ -762,9 +787,10 @@ console.log(`Wrote ${outPath} (${stories.length} stories, week ${weekNo} of ${ye
 ${FONTS}
 <style>
   :root { ${vars(palette[palette.mode])}
-    --display:"Newsreader", "Iowan Old Style", Georgia, serif; --sans:"Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; }
+    --display:"Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; --sans:"Inter", -apple-system, "Helvetica Neue", Arial, sans-serif; }
   .hero { margin: -6vh calc(-1 * clamp(24px, 8vw, 140px)) 0; padding: 6vh clamp(24px, 8vw, 140px) 9vh;
     background: ${palette.hero.bg}; ${vars(Object.fromEntries(Object.entries(palette.hero).filter(([k]) => k !== "bg")))} color: var(--text); }
+  .hero .mark { background: var(--accent-ink); }
   * { box-sizing:border-box; margin:0; padding:0; }
   body { background:var(--bg); color:var(--text); font-family:var(--sans); -webkit-font-smoothing:antialiased;
     padding:6vh clamp(24px, 8vw, 140px); min-height:100vh; }
@@ -772,12 +798,12 @@ ${FONTS}
     letter-spacing:.1em; text-transform:uppercase; color:var(--muted); }
   .brand { display:flex; align-items:center; gap:.7em; }
   .mark { width:9px; height:9px; border-radius:50%; background:var(--accent); }
-  .wm { font-family:var(--display); font-size:20px; font-weight:500; letter-spacing:-.01em; text-transform:none; color:var(--text); }
-  .wm i { font-weight:400; color:var(--text-2); }
+  .wm { font-family:var(--display); font-size:16px; font-weight:500; letter-spacing:-.01em; text-transform:none; color:var(--text); }
+  .wm i { font-style:normal; font-weight:300; color:var(--muted); }
   .eyebrow { margin-top:12vh; font-size:12px; font-weight:500; letter-spacing:.16em; text-transform:uppercase; color:var(--accent-ink); }
-  h1 { font-family:var(--display); font-weight:300; font-size:clamp(48px, 6.6vw, 112px); letter-spacing:-.025em; line-height:1; margin:2.4vh 0 2.4vh; }
-  h1 em { font-style:italic; color:var(--accent-ink); }
-  .lede { color:var(--text-2); font-family:var(--display); font-size:clamp(18px, 1.5vw, 24px); max-width:52ch; line-height:1.45; }
+  h1 { font-family:var(--display); font-weight:200; font-size:clamp(48px, 6.6vw, 112px); letter-spacing:-.04em; line-height:1.04; margin:2.4vh 0 2.4vh; }
+  h1 em { font-style:normal; color:var(--accent-ink); }
+  .lede { color:var(--text-2); font-weight:300; font-size:clamp(17px, 1.35vw, 22px); max-width:52ch; line-height:1.45; }
   .list { margin-top:6vh; border-top:1px solid var(--line-2); }
   .row { display:grid; grid-template-columns:7em 12em 1fr auto; gap:2vw; align-items:baseline; padding:2.4vh 0;
     border-bottom:1px solid var(--line); text-decoration:none; color:var(--text-2); transition:background .2s; }
@@ -786,7 +812,7 @@ ${FONTS}
   .wk, .dt, .go { font-size:12px; font-weight:500; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); }
   .wk { color:var(--text); }
   .latest .wk, .latest .go { color:var(--accent); }
-  .hd { display:flex; flex-direction:column; gap:.35em; font-family:var(--display); font-size:clamp(17px, 1.3vw, 21px); color:var(--text); }
+  .hd { display:flex; flex-direction:column; gap:.35em; font-family:var(--display); font-weight:300; font-size:clamp(16px, 1.2vw, 20px); color:var(--text); }
   footer { margin-top:10vh; font-size:12px; color:var(--muted); }
   @media (max-width:760px) { .row { grid-template-columns:1fr; gap:.6em; } }
 </style></head><body>
