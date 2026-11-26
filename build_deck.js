@@ -452,10 +452,10 @@ const html = `<!DOCTYPE html>
     font-size: clamp(26px, 2.9vw, 52px); line-height: 1.1; letter-spacing: -.035em;
     max-width: 28ch; margin-bottom: 2.6vh; text-wrap: balance;
   }
-  .bullets { list-style: none; max-width: 72ch; counter-reset: b; }
+  .bullets { list-style: none; max-width: 100%; counter-reset: b; }
   .bullets li {
     position: relative; padding-left: 1.6em; margin-bottom: 1.3vh;
-    font-size: clamp(15px, 1.18vw, 20px); line-height: 1.6; color: var(--text-2); font-weight: 300;
+    font-size: clamp(14px, 1.1vw, 19px); line-height: 1.55; color: var(--text-2); font-weight: 300;
     text-wrap: pretty;
   }
   .bullets li::before {
@@ -463,16 +463,16 @@ const html = `<!DOCTYPE html>
     width: .6em; height: 1px; background: var(--accent); top: .8em;
   }
   .why {
-    margin-top: 2.4vh; max-width: 72ch; padding: 1.8vh 1.4vw;
+    margin-top: 2.4vh; max-width: 100%; padding: 2.4vh 1.6vw;
     border-radius: 6px; border: 1px solid var(--line); border-left: 1px solid var(--accent);
     background: linear-gradient(180deg, color-mix(in srgb, var(--bg-2) 80%, transparent), transparent);
     backdrop-filter: blur(6px);
   }
   .why-label {
-    font-family: var(--mono); font-size: clamp(10px, .68vw, 11.5px); font-weight: 400; letter-spacing: .16em;
-    text-transform: uppercase; color: var(--accent-ink); margin-bottom: .8vh;
+    font-family: var(--mono); font-size: clamp(10px, .78vw, 13px); font-weight: 400; letter-spacing: .16em;
+    text-transform: uppercase; color: var(--accent-ink); margin-bottom: 1vh;
   }
-  .why p { font-weight: 300; font-size: clamp(14px, 1.08vw, 18px); line-height: 1.5; color: var(--text); }
+  .why p { font-weight: 300; font-size: clamp(17px, 1.45vw, 25px); line-height: 1.4; letter-spacing: -.01em; line-height: 1.5; color: var(--text); }
   .read {
     display: inline-flex; gap: .5em; align-items: center;
     font-size: clamp(12px, .9vw, 14px); font-weight: 350; text-decoration: none;
@@ -486,7 +486,7 @@ const html = `<!DOCTYPE html>
   .extras span::before { content: "+ "; color: var(--accent-ink); }
 
   .dek {
-    max-width: 68ch; margin: -.6vh 0 2.6vh; font-weight: 300; color: var(--text);
+    max-width: 100%; margin: -.6vh 0 2.6vh; font-weight: 300; color: var(--text);
     font-size: clamp(15px, 1.22vw, 21px); line-height: 1.5; text-wrap: pretty;
   }
 
@@ -494,7 +494,7 @@ const html = `<!DOCTYPE html>
   .lens {
     display: flex; flex-wrap: wrap; gap: 1.2vh 3vw; margin-bottom: 3.2vh;
     padding: 1.4vh 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-    max-width: 72ch;
+    max-width: 100%;
   }
   .lens-item { display: flex; flex-direction: column; gap: .5vh; }
   .lens .k { font-family: var(--mono); font-size: clamp(9px, .64vw, 11px); letter-spacing: .14em;
@@ -506,6 +506,7 @@ const html = `<!DOCTYPE html>
   .meter i.on { background: var(--accent); }
   .q { margin-top: 1.6vh; padding-top: 1.6vh; border-top: 1px solid var(--line); }
   .q .why-label { display: block; color: var(--muted); }
+  .why .q p { font-size: clamp(14px, 1.08vw, 18px); line-height: 1.5; color: var(--text-2); }
 
   /* ---------- decoder (story sidebar) ---------- */
   .decoder {
