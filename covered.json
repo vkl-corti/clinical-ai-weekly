@@ -1,0 +1,14 @@
+{
+  "urls": [
+    "https://www.pymnts.com/news/artificial-intelligence/2026/ai-drug-developers-post-higher-trial-success-as-deals-hit-46-billion/",
+    "https://www.reuters.com/business/anthropic-ipo-prospectus-shows-key-executives-board-2026-11-19/",
+    "https://openai.com/index/introducing-gpt-6-2-astra-sol"
+  ],
+  "weeks": {
+    "2026-11-23": [
+      "AI-designed drugs outperform in Phase II (Oliver Wyman)",
+      "Anthropic $2T Nasdaq debut",
+      "GPT-6.2 Astra ships; tops MedChemBench"
+    ]
+  }
+}

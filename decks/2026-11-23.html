@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>This Week in Clinical AI — 2026-11-23</title>
+<style>
+  :root {
+    --bg: #0e1420; --surface: #16202f; --text: #eef3f8; --muted: #9db0c4;
+    --accent: #4fd1c5; --accent-warm: #f6ad55;
+  }
+  @media (prefers-color-scheme: light) {
+    :root { --bg: #f7f9fb; --surface: #ffffff; --text: #14202e; --muted: #5a6b7d; }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg); color: var(--text);
+    font-family: "SF Pro Display", -apple-system, "Segoe UI", Roboto, sans-serif;
+    overflow: hidden;
+  }
+  .deck { height: 100vh; position: relative; }
+  .slide {
+    display: none; height: 100vh; padding: 8vh 10vw;
+    flex-direction: column; justify-content: center;
+  }
+  .slide.active { display: flex; }
+  .title-slide .kicker {
+    color: var(--accent); font-size: clamp(14px, 1.4vw, 20px);
+    font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase;
+    margin-bottom: 2.5vh;
+  }
+  .title-slide h1 { font-size: clamp(40px, 6.5vw, 96px); line-height: 1.05; font-weight: 800; }
+  .title-slide .date { color: var(--muted); font-size: clamp(18px, 2vw, 28px); margin-top: 3vh; }
+  .title-slide .teasers { margin-top: 5vh; color: var(--muted); line-height: 1.9; font-size: clamp(14px, 1.3vw, 19px); }
+  .title-slide .teasers li { list-style: none; padding-left: 1.4em; position: relative; }
+  .title-slide .teasers li::before { content: "→"; position: absolute; left: 0; color: var(--accent); }
+  .story-kicker {
+    color: var(--accent); font-weight: 700; font-size: clamp(12px, 1.1vw, 16px);
+    letter-spacing: 0.2em; text-transform: uppercase; margin-bottom: 2.5vh;
+  }
+  .story h2 { font-size: clamp(28px, 4vw, 60px); line-height: 1.1; font-weight: 800; margin-bottom: 4vh; max-width: 24ch; }
+  .bullets { list-style: none; max-width: 62ch; }
+  .bullets li {
+    font-size: clamp(16px, 1.7vw, 26px); line-height: 1.5; margin-bottom: 1.8vh;
+    padding-left: 1.5em; position: relative; color: var(--text);
+  }
+  .bullets li::before { content: "▪"; position: absolute; left: 0; color: var(--accent-warm); }
+  .why { margin-top: 2.5vh; max-width: 62ch; font-size: clamp(15px, 1.5vw, 22px); line-height: 1.55; }
+  .why span { color: var(--accent-warm); font-weight: 700; }
+  .source {
+    position: absolute; bottom: 5vh; left: 10vw;
+    color: var(--muted); text-decoration: none; font-size: clamp(13px, 1.1vw, 17px);
+    border-bottom: 1px solid transparent; transition: color .15s;
+  }
+  .source:hover { color: var(--accent); }
+  .hud {
+    position: fixed; bottom: 2.5vh; right: 3vw; color: var(--muted);
+    font-size: 14px; font-variant-numeric: tabular-nums; user-select: none;
+  }
+  .progress { position: fixed; top: 0; left: 0; height: 4px; background: var(--accent); transition: width .25s; }
+</style>
+</head>
+<body>
+<div class="deck">
+  <div class="progress" id="progress"></div>
+  <section class="slide title-slide active">
+    <div class="kicker">Weekly team update</div>
+    <h1>This Week in<br>Clinical&nbsp;AI</h1>
+    <div class="date">Week of 2026-11-23</div>
+    <ul class="teasers">
+      <li>AI-designed drugs are genuinely outperforming in Phase II</li><li>Anthropic&#39;s $2 trillion Nasdaq debut — the largest IPO on record</li><li>GPT-6.2 Astra ships to harsh reviews — but tops the med-chemistry benchmark</li>
+    </ul>
+  </section>
+  
+    <section class="slide story">
+      <div class="story-kicker">Story 1 of 3 · Research</div>
+      <h2>AI-designed drugs are genuinely outperforming in Phase II</h2>
+      <ul class="bullets"><li>Oliver Wyman analysis: AI-native drug developers progressed 45% of Phase II programs successfully, vs 29% for the broader sector (46-program sample)</li><li>AI drug discovery investment and licensing deals hit $46 billion in H1 2026 — after $43B in 2025 and just $12B in 2024</li><li>Money is following results: the data suggests AI-designed pipelines have measurable, trial-level signal — not just hype</li></ul>
+      <p class="why"><span>Why it matters:</span> AI-native pharma pipelines are scaling fast — clinical teams will increasingly see AI-designed drugs in trials and eventually in practice.</p>
+      <a class="source" href="https://www.pymnts.com/news/artificial-intelligence/2026/ai-drug-developers-post-higher-trial-success-as-deals-hit-46-billion/" target="_blank" rel="noopener">PYMNTS · 2026-11-23 →</a>
+    </section>
+    <section class="slide story">
+      <div class="story-kicker">Story 2 of 3 · Frontier</div>
+      <h2>Anthropic&#39;s $2 trillion Nasdaq debut — the largest IPO on record</h2>
+      <ul class="bullets"><li>Anthropic (maker of Claude) hit a $2 trillion market value in its Nasdaq debut on Nov 19, surpassing SpaceX&#39;s June listing</li><li>Shares opened 34% above the $83 IPO price, with reported proceeds of $81.3 billion</li><li>Reuters reports Anthropic holds a revenue edge over OpenAI with smaller losses — and both labs are acquiring biotech startups (OpenAI bought Orchestra Bio in October per Axios)</li></ul>
+      <p class="why"><span>Why it matters:</span> The lab behind Claude — the model family much clinical AI tooling builds on — is now massively capitalized and openly expanding into medicine and biology.</p>
+      <a class="source" href="https://www.reuters.com/business/anthropic-ipo-prospectus-shows-key-executives-board-2026-11-19/" target="_blank" rel="noopener">Reuters · 2026-11-19 →</a>
+    </section>
+    <section class="slide story">
+      <div class="story-kicker">Story 3 of 3 · Frontier</div>
+      <h2>GPT-6.2 Astra ships to harsh reviews — but tops the med-chemistry benchmark</h2>
+      <ul class="bullets"><li>OpenAI released GPT-6.2 Astra and Sol on Nov 17; early reception was sharply negative — one prominent tester called it the &#39;worst model OpenAI has ever released&#39;</li><li>Yet on MedChemBench (a 99-item medicinal-chemistry task set) Astra earned 84.5% — a leading score, though the benchmark itself cautions it does not prove real drug-discovery capability</li><li>Google answered Nov 18 with Gemini 4 Neon at $3/$15 per million tokens and a one-million-token context window — the price war continues</li></ul>
+      <p class="why"><span>Why it matters:</span> Frontier labs now ship medical-science benchmarks alongside each release — a clear signal of where they think the value is heading.</p>
+      <a class="source" href="https://openai.com/index/introducing-gpt-6-2-astra-sol" target="_blank" rel="noopener">OpenAI / Writingmate weekly digest · 2026-11-20 →</a>
+    </section>
+  <section class="slide title-slide">
+    <div class="kicker">That's the week</div>
+    <h1>Questions?<br>Discussion 🩺</h1>
+    <div class="date">Sources linked on each slide · deck generated 2026-11-23</div>
+  </section>
+</div>
+<div class="hud" id="hud"></div>
+<script>
+  const slides = [...document.querySelectorAll(".slide")];
+  let i = 0;
+  const show = () => {
+    slides.forEach((s, j) => s.classList.toggle("active", i === j));
+    document.getElementById("hud").textContent = (i + 1) + " / " + slides.length;
+    document.getElementById("progress").style.width =
+      ((i + 1) / slides.length * 100) + "%";
+  };
+  const next = () => { i = Math.min(i + 1, slides.length - 1); show(); };
+  const prev = () => { i = Math.max(i - 1, 0); show(); };
+  document.addEventListener("keydown", (e) => {
+    if (["ArrowRight", "ArrowDown", " ", "PageDown"].includes(e.key)) { e.preventDefault(); next(); }
+    if (["ArrowLeft", "ArrowUp", "PageUp"].includes(e.key)) { e.preventDefault(); prev(); }
+    if (e.key === "Home") { i = 0; show(); }
+    if (e.key === "End") { i = slides.length - 1; show(); }
+    if (e.key === "f") { document.documentElement.requestFullscreen?.(); }
+  });
+  document.addEventListener("click", (e) => { if (!e.target.closest("a")) next(); });
+  show();
+</script>
+</body>
+</html>

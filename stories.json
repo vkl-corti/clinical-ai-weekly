@@ -1,0 +1,44 @@
+{
+  "weekOf": "2026-11-23",
+  "stories": [
+    {
+      "title": "AI-designed drugs are genuinely outperforming in Phase II",
+      "category": "Research",
+      "url": "https://www.pymnts.com/news/artificial-intelligence/2026/ai-drug-developers-post-higher-trial-success-as-deals-hit-46-billion/",
+      "source": "PYMNTS",
+      "date": "2026-11-23",
+      "bullets": [
+        "Oliver Wyman analysis: AI-native drug developers progressed 45% of Phase II programs successfully, vs 29% for the broader sector (46-program sample)",
+        "AI drug discovery investment and licensing deals hit $46 billion in H1 2026 — after $43B in 2025 and just $12B in 2024",
+        "Money is following results: the data suggests AI-designed pipelines have measurable, trial-level signal — not just hype"
+      ],
+      "why": "AI-native pharma pipelines are scaling fast — clinical teams will increasingly see AI-designed drugs in trials and eventually in practice."
+    },
+    {
+      "title": "Anthropic's $2 trillion Nasdaq debut — the largest IPO on record",
+      "category": "Frontier",
+      "url": "https://www.reuters.com/business/anthropic-ipo-prospectus-shows-key-executives-board-2026-11-19/",
+      "source": "Reuters",
+      "date": "2026-11-19",
+      "bullets": [
+        "Anthropic (maker of Claude) hit a $2 trillion market value in its Nasdaq debut on Nov 19, surpassing SpaceX's June listing",
+        "Shares opened 34% above the $83 IPO price, with reported proceeds of $81.3 billion",
+        "Reuters reports Anthropic holds a revenue edge over OpenAI with smaller losses — and both labs are acquiring biotech startups (OpenAI bought Orchestra Bio in October per Axios)"
+      ],
+      "why": "The lab behind Claude — the model family much clinical AI tooling builds on — is now massively capitalized and openly expanding into medicine and biology."
+    },
+    {
+      "title": "GPT-6.2 Astra ships to harsh reviews — but tops the med-chemistry benchmark",
+      "category": "Frontier",
+      "url": "https://openai.com/index/introducing-gpt-6-2-astra-sol",
+      "source": "OpenAI / Writingmate weekly digest",
+      "date": "2026-11-20",
+      "bullets": [
+        "OpenAI released GPT-6.2 Astra and Sol on Nov 17; early reception was sharply negative — one prominent tester called it the 'worst model OpenAI has ever released'",
+        "Yet on MedChemBench (a 99-item medicinal-chemistry task set) Astra earned 84.5% — a leading score, though the benchmark itself cautions it does not prove real drug-discovery capability",
+        "Google answered Nov 18 with Gemini 4 Neon at $3/$15 per million tokens and a one-million-token context window — the price war continues"
+      ],
+      "why": "Frontier labs now ship medical-science benchmarks alongside each release — a clear signal of where they think the value is heading."
+    }
+  ]
+}
