@@ -27,12 +27,8 @@
           "def": "The standard breast cancer risk calculator (also called IBIS), filled in from a questionnaire: age, family history, reproductive and hormonal history, and breast density. In the US, a lifetime risk of 20% or more usually qualifies a woman for annual screening MRI."
         },
         {
-          "term": "Image-based risk model",
-          "def": "AI that reads a normal-looking image for subtle patterns linked to future disease, not for cancer present today. The output is a risk estimate, like a Tyrer-Cuzick score, not a finding."
-        },
-        {
-          "term": "De Novo authorization",
-          "def": "FDA route for a new kind of device with nothing equivalent on the market. Requires more evidence than a 510(k), which only needs equivalence to an existing device."
+          "term": "510(k) vs De Novo",
+          "def": "The two main FDA routes for devices. 510(k): 'substantially equivalent' to a device already on the market, needs less clinical evidence. De Novo: a genuinely new kind of device, needs more."
         }
       ],
       "dek": "DeepHealth, the AI subsidiary of US outpatient-imaging chain RadNet, makes Mammo Risk: software that reads a woman's routine 3D mammogram and estimates her chance of developing breast cancer over the next 3–5 years."
@@ -60,10 +56,6 @@
         {
           "term": "AI-designed drug",
           "def": "An ordinary medicine (pill or biologic) where machine-learning models helped choose the target or design the molecule. It passes the same trials and approval as any drug: 'AI' describes how it was found, not how it works."
-        },
-        {
-          "term": "Phase II trial",
-          "def": "The first trial testing whether a drug actually works in patients with the condition (typically ~100–300), after Phase I safety testing. Historically the stage where most candidates fail."
         }
       ],
       "question": "Would knowing a drug was AI-designed change how you read its trial data?",
@@ -89,10 +81,6 @@
       "setting": "Research · drug discovery",
       "horizon": "Not clinical yet",
       "terms": [
-        {
-          "term": "Benchmark",
-          "def": "A fixed test set used to score AI models, like a board exam. A high score shows the model answers those questions well, not that it performs safely in real practice."
-        },
         {
           "term": "Tokens & context window",
           "def": "A token is ~¾ of a word; models are priced per million tokens. The context window is how much the model can read at once: 1M tokens ≈ 750,000 words, enough for many complete patient records."
@@ -130,7 +118,7 @@
   ],
   "signals": [
     {
-      "title": "LLMs are now auditing the medical literature itself",
+      "title": "AI is now auditing the medical literature itself",
       "note": "An MIT / Dana-Farber team used language models to review nearly 4,000 clinical prediction papers (Nature Medicine) and found that sharing code is still uncommon.",
       "later": "AI-assisted peer review and reproducibility checks could change which studies we trust, and feeds into a new reporting guideline (TRIPOD-Code).",
       "url": "https://news.mit.edu/2026/ai-helps-researchers-investigate-how-medical-studies-share-code-1119",
@@ -148,20 +136,8 @@
   ],
   "glossary": [
     {
-      "term": "510(k) clearance",
-      "def": "The most common FDA route for devices: the maker shows the product is 'substantially equivalent' to one already on the market. Usually requires less clinical evidence than full approval (PMA)."
-    },
-    {
-      "term": "Triage AI",
-      "def": "Software that flags and reprioritises cases (e.g. a suspected bleed on CT) so a clinician sees them sooner. The clinician still reads the case and makes the diagnosis."
-    },
-    {
       "term": "IPO",
       "def": "Initial public offering: a private company sells shares on a stock exchange for the first time. It raises cash and requires public, audited reporting, so outsiders learn far more about how the company works and earns money."
-    },
-    {
-      "term": "LLM (large language model)",
-      "def": "The type of AI behind ChatGPT and Claude: trained on huge amounts of text to read and write language. Most new clinical AI tools, such as scribes and chatbots, are LLM-based."
     },
     {
       "term": "TRIPOD",

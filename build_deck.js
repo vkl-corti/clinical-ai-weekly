@@ -50,7 +50,7 @@ for (const t of [...stories.flatMap((s) => s.terms || []), ...(data.glossary || 
 // Flags acronyms and named models/scores (e.g. "Tyrer-Cuzick", "510(k)") that appear in
 // slide text without a Decoder entry. Warnings only; fix them in stories.json.
 const COMMON = new Set(
-  ("AI ML US USA UK EU FDA NIH CDC WHO MRI CT PET ECG EKG ED ICU OR GP RCT EHR EMR CE " +
+  ("AI ML LLM LLMs US USA UK EU FDA NIH CDC WHO MRI CT PET ECG EKG ED ICU OR GP RCT EHR EMR CE " +
    "NHS DNA RNA BMI HIV COVID ER H1 H2 Q1 Q2 Q3 Q4 II III IV I V AI-native").split(" ")
 );
 const termCovers = (terms, w) =>
